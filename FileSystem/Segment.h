@@ -4,10 +4,10 @@ class Segment
 {
 public:
 	Block blockMassive[2];
-	string segmentCount;
-	string nextSegmentNumber;
-	string busySegmentCount;
-	string startBlockNumber;
+	int segmentCount;
+	int nextSegmentNumber;
+	int busySegmentCount;
+	int startBlockNumber;
 	void clean();
 	void write();
 };

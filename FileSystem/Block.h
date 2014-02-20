@@ -1,5 +1,6 @@
 
 #include "Word.h"
+#include <sstream>
 
 class Block
 {

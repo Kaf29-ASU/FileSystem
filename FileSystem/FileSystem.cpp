@@ -35,15 +35,25 @@ void FileSystem::format(string version, string tomName, string userName, string 
 	}
 
 	Segment catalog[31];
-	for (int i=0;i<31;i++)
+	for (int i=0;i<30;i++)
 	{
-
 		catalog[i].clean();
-		catalog[i].segmentCount=(char*)31;
-		catalog[i].nextSegmentNumber=(char*)(i+1);
-		catalog[i].busySegmentCount='0';
+		catalog[i].segmentCount=31;
+		catalog[i].nextSegmentNumber=(i+2);
+		catalog[i].busySegmentCount=0;
 		catalog[i].write();
+		memory.write((char*)catalog[i].blockMassive[0].byteMassive, sizeof(catalog[i].blockMassive[0].byteMassive));
+		memory.write((char*)catalog[i].blockMassive[1].byteMassive, sizeof(catalog[i].blockMassive[1].byteMassive));
+
 	}
+	catalog[30].clean();
+		catalog[30].segmentCount=31;
+		catalog[30].nextSegmentNumber=(0);
+		catalog[30].busySegmentCount=0;
+		catalog[30].write();
+		memory.write((char*)catalog[30].blockMassive[0].byteMassive, sizeof(catalog[30].blockMassive[0].byteMassive));
+		memory.write((char*)catalog[30].blockMassive[1].byteMassive, sizeof(catalog[30].blockMassive[1].byteMassive));
+
 
 	memory.close();
 }
