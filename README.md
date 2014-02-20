@@ -1,5 +1,9 @@
 Hello, world!
+<<<<<<< HEAD
 
-new string
-I hate all of you! 
 
+Hello, I hate all of you!
+erytiuey
+wfhyiu
+ 
+>>>>>>> Sergey
