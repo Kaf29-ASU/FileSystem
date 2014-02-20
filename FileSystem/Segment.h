@@ -9,4 +9,5 @@ public:
 	string busySegmentCount;
 	string startBlockNumber;
 	void clean();
+	void write();
 };

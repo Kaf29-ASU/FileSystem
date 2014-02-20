@@ -37,7 +37,12 @@ void FileSystem::format(string version, string tomName, string userName, string 
 	Segment catalog[31];
 	for (int i=0;i<31;i++)
 	{
+
 		catalog[i].clean();
+		catalog[i].segmentCount=(char*)31;
+		catalog[i].nextSegmentNumber=(char*)(i+1);
+		catalog[i].busySegmentCount='0';
+		catalog[i].write();
 	}
 
 	memory.close();
