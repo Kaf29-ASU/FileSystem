@@ -63,6 +63,7 @@
     <ClInclude Include="Block.h" />
     <ClInclude Include="FileDescriptor.h" />
     <ClInclude Include="FileSystem.h" />
+    <ClInclude Include="FileSystemMonitor.h" />
     <ClInclude Include="Segment.h" />
     <ClInclude Include="Word.h" />
   </ItemGroup>
@@ -70,6 +71,7 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="FileDescriptor.cpp" />
     <ClCompile Include="FileSystem.cpp" />
+    <ClCompile Include="FileSystemMonitor.cpp" />
     <ClCompile Include="Monitor.cpp" />
     <ClCompile Include="Segment.cpp" />
   </ItemGroup>
