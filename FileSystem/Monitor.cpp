@@ -1,10 +1,15 @@
-#include "FileSystemMonitor.h"
+#include "FileSystem.h"
+
 
 
 int main()
 {
 	FileSystem f;
-	f.createFile("test");
-	f.openFile("test");
-	f.format("23","tom","otherString","last");
-}
+	Block r;
+	//f.createFile("test");
+	//f.openFile("test");
+	//f.format("23","tom","otherString","last");
+	r=f.readBlock(1);
+	cout<<r.byteMassive<<endl;
+	getch();
+};

@@ -21,6 +21,7 @@ void FileSystem::format(string version, string tomName, string userName, string 
 
 	Block systemBlock;
 	systemBlock.Clean();		//системный блок
+	systemBlock.InsertString(469,"6");
 	systemBlock.InsertString(470,version);
 	systemBlock.InsertString(472,tomName);
 	systemBlock.InsertString(484,userName);
@@ -56,4 +57,20 @@ void FileSystem::format(string version, string tomName, string userName, string 
 
 
 	memory.close();
+}
+
+Block FileSystem::readBlock(int number)
+{
+	openFile("test");
+	Block result;
+	char tmp[513];
+	for (int i=0;i<number;i++)
+	{
+		memory.get(tmp,513);
+	}
+	memory.close();
+	for (int i=0;i<512;i++)
+		result.byteMassive[i]=tmp[i];
+
+	return result;
 }

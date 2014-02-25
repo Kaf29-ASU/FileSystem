@@ -8,5 +8,7 @@ public:
 	void createFile(string);
 	void openFile(string);
 	void format(string,string,string,string);
+	Block readBlock(int);
+	void writeBlock(Block);
 
 };
