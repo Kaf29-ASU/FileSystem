@@ -9,6 +9,6 @@ public:
 	void openFile(string);
 	void format(string,string,string,string);
 	Block readBlock(int);
-	void writeBlock(Block);
+	void writeBlock(Block,int);
 
 };

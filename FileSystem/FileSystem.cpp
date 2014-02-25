@@ -74,3 +74,13 @@ Block FileSystem::readBlock(int number)
 
 	return result;
 }
+
+void FileSystem::writeBlock(Block input, int place)
+{
+	openFile("test");
+	memory.seekp((place)*512);
+	memory.write((char*)input.byteMassive, sizeof(input.byteMassive));
+
+	memory.close();
+	
+}
