@@ -23,5 +23,7 @@ void Segment::write()
 	for (int i=0;i<16-len;i++)
 		tmp="0"+tmp;
 	blockMassive[0].InsertString(16,tmp);
-	ss.clear();
+	ss.str("");
+
+
 }

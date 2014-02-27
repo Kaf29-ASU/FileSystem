@@ -5,4 +5,4 @@ class FileSystemMonitor
 public:
 	FileSystem* filesystem;
 
-}
+};
