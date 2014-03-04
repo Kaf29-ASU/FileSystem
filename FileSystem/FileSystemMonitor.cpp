@@ -9,7 +9,7 @@ void FileSystemMonitor::startWorking()
 }
 
 
-void FileSystemMonitor::showMenu()
+int FileSystemMonitor::showMenu()
 {
 	cout<<"1 - Вывести оглавление как есть"<<endl;
 	cout<<"2 - Вывести оглавление по алфавиту"<<endl;
@@ -23,5 +23,16 @@ void FileSystemMonitor::showMenu()
 	cout<<"10 - Записать метку тома и владельца"<<endl;
 	cout<<"Для получения информации о входных параметрах и работе коианды введите номер команды со знаком <?>"<<endl;
 	cout<<""<<endl;
-	system("pause");
+	return(getch());
+}
+
+
+void FileSystemMonitor::workCycle()
+{
+	startWorking();
+	for(;;)
+	{
+		int comandNumber=showMenu();
+		if(comandNumber=='0') break;
+	}
 }

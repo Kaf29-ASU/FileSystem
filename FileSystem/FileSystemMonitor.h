@@ -17,6 +17,6 @@ public:
 	void showTableInAlphavit();
 
 	void startWorking();
-	void showMenu();
-
+	int showMenu();
+	void workCycle();
 };

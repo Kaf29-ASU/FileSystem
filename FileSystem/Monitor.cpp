@@ -7,8 +7,8 @@ int main()
 	setlocale(LC_ALL, "Russian"); 
 	FileSystemMonitor f1;
 	FileSystem f;
-	f1.startWorking();
-	f1.showMenu();
+	f1.workCycle();
+	
 	Block r;
 	r.Clean();
 	r.InsertString(0,"12234455667");
