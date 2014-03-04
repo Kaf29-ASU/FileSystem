@@ -1,5 +1,5 @@
 #include "FileSystem.h"
-
+#include <iomanip>
 class FileSystemMonitor
 {
 public:
@@ -16,5 +16,7 @@ public:
 	void writeVolumeLabelAndOwner();
 	void showTableInAlphavit();
 
+	void startWorking();
+	void showMenu();
 
 };

@@ -1,10 +1,14 @@
-#include "FileSystem.h"
+#include "FileSystemMonitor.h"
 
 
 
 int main()
 {
+	setlocale(LC_ALL, "Russian"); 
+	FileSystemMonitor f1;
 	FileSystem f;
+	f1.startWorking();
+	f1.showMenu();
 	Block r;
 	r.Clean();
 	r.InsertString(0,"12234455667");
