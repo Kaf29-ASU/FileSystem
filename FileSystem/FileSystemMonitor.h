@@ -3,7 +3,7 @@
 class FileSystemMonitor
 {
 public:
-	FileSystem* filesystem;
+	FileSystem fileSystem;
 	void createNewFileSystem();
 	void showTableOfContents();
 	void showInformation();
