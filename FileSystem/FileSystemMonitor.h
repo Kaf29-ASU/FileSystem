@@ -19,4 +19,5 @@ public:
 	void startWorking();
 	int showMenu();
 	void workCycle();
+	void showHelp();
 };
