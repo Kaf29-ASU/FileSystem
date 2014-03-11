@@ -84,6 +84,10 @@ void FileSystem::writeBlock(Block input, int place)
 	
 }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> b0d4cfdc9d14ae7d6a18465f3d39fe52b47f8219
 int FileSystem::findRecord(string name)
 {
 	for (int i=0;i<31;i++)
@@ -97,8 +101,13 @@ int FileSystem::findRecord(string name)
 		if (readBlock(i+6).getString(400,name.length())==name)
 			return (6+i)*512+384;
 	}
+<<<<<<< HEAD
+	return 0;
+}
+=======
 	return 0;}
 
+>>>>>>> b0d4cfdc9d14ae7d6a18465f3d39fe52b47f8219
 void FileSystem::closeFileSystem()
 {
 	memory.close();

@@ -13,5 +13,11 @@ public:
 
 	int findRecord(string);
 
+<<<<<<< HEAD
+
 	void closeFileSystem();
+
+=======
+	void closeFileSystem();
+>>>>>>> b0d4cfdc9d14ae7d6a18465f3d39fe52b47f8219
 };
