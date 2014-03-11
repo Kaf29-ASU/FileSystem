@@ -3,8 +3,9 @@
 class FileSystem
 {
 private:
-	fstream memory;
+	
 public:
+	fstream memory;
 	void createFile(string);
 	void openFile(string);
 	void format(string,string,string,string);
@@ -12,5 +13,6 @@ public:
 	void writeBlock(Block,int);
 	int findRecord(string);
 	void closeFileSystem();
-
+	FileDescriptor getDescriptor();
+	
 };

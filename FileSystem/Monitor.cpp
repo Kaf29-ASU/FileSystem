@@ -5,24 +5,26 @@
 int main()
 {
 	setlocale(LC_ALL, "Russian"); 
-	FileSystemMonitor f1;
+	//FileSystemMonitor f1;
 	FileSystem f;
-	f1.workCycle();
+	//f1.workCycle();
 	
 	Block r;
-	r.Clean();
+	//r.Clean();
 	string p=r.getString(0,4);
 	//f.createFile("test");
 	f.openFile("test");
 	f.format("23","tom","otherString","last");
 
-	f.writeBlock(r,6);
+	//f.writeBlock(r,6);
 	int y;
 
-	y=f.findRecord("000");
-
-	f.writeBlock(r,6);
-
+	y=f.findRecord("5");
+	char c;
+	f.memory.seekg(y);
+	c=f.memory.get();
+	//f.writeBlock(r,6);
+	r=f.readBlock(7);
 
 
 };
