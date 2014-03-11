@@ -127,7 +127,7 @@ void FileSystemMonitor::workCycle()
 		string systemName;
 		cout<<"print systemName"<<endl;
 		cin>>systemName;
-		fileSystem.format(version, tomName, userName, systemName);
+		this->fileSystem.format(version, tomName, userName, systemName);
 	};
 	if(startType==1)
 	{
@@ -152,7 +152,7 @@ void FileSystemMonitor::workCycle()
 		if(comandNumber==8){ compressionOfFileSystem(); resultCode=1;};
 		if(comandNumber==9){ changeFileType(); resultCode=1;};
 		if(comandNumber==10){ writeVolumeLabelAndOwner(); resultCode=1;};
-		if(comandNumber==11){ showHelp(); resultCode=1;};
+		if(comandNumber==11){ showHelp(); resultCode=1; this->fileSystem.closeFileSystem(); };
 		if(!resultCode) cout<<"Некорректное входное значение. Повторите ввод"<<endl;
 	}
 }
