@@ -5,9 +5,9 @@
 int main()
 {
 	setlocale(LC_ALL, "Russian"); 
-	//FileSystemMonitor f1;
+	FileSystemMonitor f1;
 	FileSystem f;
-	//f1.workCycle();
+	f1.workCycle();
 	
 	/*Block r;
 	r.Clean();
@@ -21,6 +21,4 @@ int main()
 	y=f.findRecord("000");
 =======
 	f.writeBlock(r,6);*/
->>>>>>> 2d9afe353f5bf2ce2208e3a3e0d963bc0ed443f8
-
 };
