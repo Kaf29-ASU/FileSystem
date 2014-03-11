@@ -61,14 +61,12 @@ void FileSystem::format(string version, string tomName, string userName, string 
 
 Block FileSystem::readBlock(int number)
 {
-	openFile("test");
 	Block result;
 	char tmp[513];
 	for (int i=0;i<number;i++)
 	{
 		memory.get(tmp,513);
 	}
-	memory.close();
 	for (int i=0;i<512;i++)
 		result.byteMassive[i]=tmp[i];
 
@@ -77,7 +75,7 @@ Block FileSystem::readBlock(int number)
 
 void FileSystem::writeBlock(Block input, int place)
 {
-	openFile("test");
+
 	memory.seekp((place)*512);
 	memory.write((char*)input.byteMassive, sizeof(input.byteMassive));
 
@@ -85,7 +83,6 @@ void FileSystem::writeBlock(Block input, int place)
 	
 }
 
-<<<<<<< HEAD
 int FileSystem::findRecord(string name)
 {
 	for (int i=0;i<31;i++)
@@ -99,10 +96,10 @@ int FileSystem::findRecord(string name)
 		if (readBlock(i+6).getString(400,name.length())==name)
 			return (6+i)*512+384;
 	}
-	return 0;
-=======
+	return 0;}
+
 void FileSystem::closeFileSystem()
 {
 	memory.close();
->>>>>>> 2d9afe353f5bf2ce2208e3a3e0d963bc0ed443f8
+
 }
