@@ -60,10 +60,10 @@ void FileSystemMonitor::showTableInAlphavit()
 void FileSystemMonitor::createNewFile()
 {
 	string fileName;
-	cout<<"¬ведите им€ файла"<<endl;
+	cout<<"¬ведите им€ файла не превышающее 32 символа"<<endl;
 	cin>>fileName;
 	string fileType;
-	cout<<"¬ведите тип файла"<<endl;
+	cout<<"¬ведите тип файла не превышающий 16 сиволов"<<endl;
 	cin>>fileType;
 	string fileSize;
 	cout<<"¬ведите размер файла в байтах"<<endl;
@@ -96,7 +96,7 @@ void FileSystemMonitor::reNameFile()
 	cout<<"¬ведите им€ нужного файла"<<endl;
 	string fileName;
 	cin>>fileName;
-	cout<<"¬ведите новое файла"<<endl;
+	cout<<"¬ведите новое им€ файла не превышающее 32 символа"<<endl;
 	string newFileName;
 	cin>>newFileName;
 	cout<<"переименовываю файл"<<endl;
@@ -120,7 +120,7 @@ void FileSystemMonitor::changeFileType()
 	cout<<"¬ведите им€ нужного файла"<<endl;
 	string fileName;
 	cin>>fileName;
-	cout<<"¬ведите новый тип файла"<<endl;
+	cout<<"¬ведите новый тип файла не превышающий 16 символов"<<endl;
 	string fileType;
 	cin>>fileType;
 	cout<<"мен€ю тип файла"<<endl;
