@@ -10,6 +10,10 @@ public:
 	void format(string,string,string,string);
 	Block readBlock(int);
 	void writeBlock(Block,int);
+<<<<<<< HEAD
 	int findRecord(string);
 
+=======
+	void closeFileSystem();
+>>>>>>> 2d9afe353f5bf2ce2208e3a3e0d963bc0ed443f8
 };

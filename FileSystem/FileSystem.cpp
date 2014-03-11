@@ -4,7 +4,7 @@
 void FileSystem:: createFile(string address)
 {
 	memory.open(address+".txt",ios::out);
-	memory.close();
+	//memory.close();
 }
 
 void FileSystem::openFile(string fileName)
@@ -56,7 +56,7 @@ void FileSystem::format(string version, string tomName, string userName, string 
 		memory.write((char*)catalog[30].blockMassive[1].byteMassive, sizeof(catalog[30].blockMassive[1].byteMassive));
 
 
-	memory.close();
+	//memory.close();
 }
 
 Block FileSystem::readBlock(int number)
@@ -81,10 +81,11 @@ void FileSystem::writeBlock(Block input, int place)
 	memory.seekp((place)*512);
 	memory.write((char*)input.byteMassive, sizeof(input.byteMassive));
 
-	memory.close();
+	//memory.close();
 	
 }
 
+<<<<<<< HEAD
 int FileSystem::findRecord(string name)
 {
 	for (int i=0;i<31;i++)
@@ -99,4 +100,9 @@ int FileSystem::findRecord(string name)
 			return (6+i)*512+384;
 	}
 	return 0;
+=======
+void FileSystem::closeFileSystem()
+{
+	memory.close();
+>>>>>>> 2d9afe353f5bf2ce2208e3a3e0d963bc0ed443f8
 }
