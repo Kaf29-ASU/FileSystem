@@ -34,17 +34,17 @@ int FileSystemMonitor::showMenu()
 void FileSystemMonitor::showHelp()
 {
 	cout<<"Справка к командам файловой системы"<<endl;
-	cout<<"1 - Вывести оглавление как есть <здесь будет справка>"<<endl;
-	cout<<"2 - Вывести оглавление по алфавиту <здесь будет справка>"<<endl;
-	cout<<"3 - Вывести информацию о пустом месте на диске и его характеристиках <здесь будет справка>"<<endl;
-	cout<<"4 - создать файл <здесь будет справка>"<<endl;
-	cout<<"5 - Удалить файл <здесь будет справка>"<<endl;
-	cout<<"6 - Перемеиновать файл <здесь будет справка>"<<endl;
-	cout<<"7 - Добавить информацию в существующий файл <здесь будет справка>"<<endl;
-	cout<<"8 - Сжатие файловой системы <здесь будет справка>"<<endl;
-	cout<<"9 - Изменение типа файла <здесь будет справка>"<<endl;
-	cout<<"10 - Записать метку тома и владельца <здесь будет справка>"<<endl;
-	cout<<"11 - Показать справку по командам файловой системы <здесь будет справка>"<<endl<<endl<<endl;
+	cout<<"1 - Функция выводит оглавление без сортировки"<<endl;
+	cout<<"2 - Функция выводит оглавление отсортированное по алфавиту"<<endl;
+	cout<<"3 - Функция выводит информацию о пустом месте на диске"<<endl;
+	cout<<"4 - Функция создаёт новый файл с заданными характеристиками"<<endl;
+	cout<<"5 - Функция удаляет файл заданный именем"<<endl;
+	cout<<"6 - Функция изменяет имя существующего файла на диске"<<endl;
+	cout<<"7 - Функция добавляет информацию в уже существующий файл"<<endl;
+	cout<<"8 - Функция осуществляет дефрагментацию диска"<<endl;
+	cout<<"9 - Функция изменяет тип существующего файла"<<endl;
+	cout<<"10 - С помощью данной функции изменяются метка тома и владелец файловой системы"<<endl;
+	cout<<"11 - Результат работы данной функции вы видите выше"<<endl<<endl<<endl;
 }
 
 void FileSystemMonitor::showTableOfContents()
@@ -59,6 +59,22 @@ void FileSystemMonitor::showTableInAlphavit()
 
 void FileSystemMonitor::createNewFile()
 {
+	string fileName;
+	cout<<"Введите имя файла"<<endl;
+	cin>>fileName;
+	string fileType;
+	cout<<"Введите тип файла"<<endl;
+	cin>>fileType;
+	string fileSize;
+	cout<<"Введите размер файла в байтах"<<endl;
+	cin>>fileSize;
+	char creationDate[16];
+	time_t seconds = time(NULL);
+	tm* timeinfo = localtime(&seconds);
+	char* format = "%B %d, %Y";
+	strftime(creationDate, 16, format, timeinfo);
+	cout<<endl<<"Дата создания файла: "<<creationDate<<endl;
+	
 	cout<<"создаю файл"<<endl;
 }
 
@@ -69,16 +85,28 @@ void FileSystemMonitor::showInformation()
 
 void FileSystemMonitor::deleteFile()
 {
+	cout<<"Введите имя нужного файла"<<endl;
+	string fileName;
+	cin>>fileName;
 	cout<<"удаляю файл"<<endl;
 }
 
 void FileSystemMonitor::reNameFile()
 {
+	cout<<"Введите имя нужного файла"<<endl;
+	string fileName;
+	cin>>fileName;
+	cout<<"Введите новое файла"<<endl;
+	string newFileName;
+	cin>>newFileName;
 	cout<<"переименовываю файл"<<endl;
 }
 
 void FileSystemMonitor::addInformationToFile()
 {
+	cout<<"Введите имя нужного файла"<<endl;
+	string fileName;
+	cin>>fileName;
 	cout<<"добавляю информацию в файл"<<endl;
 }
 
@@ -89,6 +117,12 @@ void FileSystemMonitor::compressionOfFileSystem()
 
 void FileSystemMonitor::changeFileType()
 {
+	cout<<"Введите имя нужного файла"<<endl;
+	string fileName;
+	cin>>fileName;
+	cout<<"Введите новый тип файла"<<endl;
+	string fileType;
+	cin>>fileType;
 	cout<<"меняю тип файла"<<endl;
 }
 

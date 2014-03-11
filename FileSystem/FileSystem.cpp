@@ -116,4 +116,8 @@ void FileSystem::closeFileSystem()
 
 }
 
-FileDescriptor FileSystem::getDescriptor(){}
+FileDescriptor FileSystem::getDescriptor()
+{
+	FileDescriptor f;
+	return(f);
+}
