@@ -18,18 +18,11 @@ int main()
 
 	f.writeBlock(r,6);
 	int y;
-<<<<<<< HEAD
-	y=f.findRecord("5");
-=======
+
 	y=f.findRecord("000");
-<<<<<<< HEAD
-=======
-	f.writeBlock(r,6);*/
-=======
->>>>>>> e0f83ad0e87d8db58992329a87649800250399cb
 
 	f.writeBlock(r,6);
 
 
->>>>>>> b0d4cfdc9d14ae7d6a18465f3d39fe52b47f8219
+
 };
