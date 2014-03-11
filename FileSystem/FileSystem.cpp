@@ -43,6 +43,7 @@ void FileSystem::format(string version, string tomName, string userName, string 
 		catalog[i].nextSegmentNumber=(i+1);
 		catalog[i].busySegmentCount=0;
 		catalog[i].write();
+		catalog[i].blockMassive[1].byteMassive[16]=5;
 		memory.write((char*)catalog[i].blockMassive[0].byteMassive, sizeof(catalog[i].blockMassive[0].byteMassive));
 		memory.write((char*)catalog[i].blockMassive[1].byteMassive, sizeof(catalog[i].blockMassive[1].byteMassive));
 

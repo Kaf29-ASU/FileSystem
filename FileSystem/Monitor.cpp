@@ -18,7 +18,7 @@ int main()
 
 	f.writeBlock(r,6);
 	int y;
-	y=f.findRecord("000");
+	y=f.findRecord("5");
 
 	f.writeBlock(r,6);
 
