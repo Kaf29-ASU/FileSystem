@@ -40,7 +40,7 @@ void FileSystem::format(string version, string tomName, string userName, string 
 	{
 		catalog[i].clean();
 		catalog[i].segmentCount=31;
-		catalog[i].nextSegmentNumber=(i+2);
+		catalog[i].nextSegmentNumber=(i+1);
 		catalog[i].busySegmentCount=0;
 		catalog[i].write();
 		memory.write((char*)catalog[i].blockMassive[0].byteMassive, sizeof(catalog[i].blockMassive[0].byteMassive));
@@ -83,4 +83,20 @@ void FileSystem::writeBlock(Block input, int place)
 
 	memory.close();
 	
+}
+
+int FileSystem::findRecord(string name)
+{
+	for (int i=0;i<31;i++)
+	{
+		if ((readBlock(i+6).getString(16,name.length())==name)&&!(i%2==0))
+			return (6+i)*512;
+		if (readBlock(i+6).getString(144,name.length())==name)
+			return (6+i)*512+128;
+		if (readBlock(i+6).getString(272,name.length())==name)
+			return (6+i)*512+256;
+		if (readBlock(i+6).getString(400,name.length())==name)
+			return (6+i)*512+384;
+	}
+	return 0;
 }

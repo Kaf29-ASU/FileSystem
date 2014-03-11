@@ -10,5 +10,6 @@ public:
 	void format(string,string,string,string);
 	Block readBlock(int);
 	void writeBlock(Block,int);
+	int findRecord(string);
 
 };
