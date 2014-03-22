@@ -12,7 +12,7 @@ public:
 	void createNewFile();
 	void deleteFile();
 	void reNameFile();
-	void addInformationToFile();
+	void addInformationToFile();y
 	void compressionOfFileSystem();
 	void changeFileType();
 	void writeVolumeLabelAndOwner();
