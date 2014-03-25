@@ -1,6 +1,5 @@
 #include <conio.h>
 #include <stdio.h>
-#include <string>
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -8,6 +7,7 @@ using namespace std;
 
 struct FileDescriptor
 {
+public:
 	string descriptorType;
 	string fileName;
 	string fileType;

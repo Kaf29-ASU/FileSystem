@@ -85,39 +85,106 @@ void FileSystem::writeBlock(Block input, int place)
 
 
 
-int FileSystem::findRecord(string name)
+FileDescriptor FileSystem::getRecord(string name)
 {
 	Block b;
-	string s;
-	for (int i=0;i<31;i++)
+	FileDescriptor result;
+	for (int i=0;i<62;i++)
 	{
-		
 		b=readBlock(i+6);
-		s=b.getString(16,name.length());
-		if ((readBlock(i+6).getString(16,name.length())==name)&&!(i%2==0))
-			return (6+i)*512;
-		if (readBlock(i+6).getString(16+128,name.length())==name)
-			return (6+i)*512+128;
-		if (readBlock(i+6).getString(16+256,name.length())==name)
-			return (6+i)*512+256;
-		if (readBlock(i+6).getString(16+384,name.length())==name)
-			return (6+i)*512+384;
+		if ((b.getString(16,name.length())==name)&&!(i%2==0))
+			{
+				result.descriptorType=b.getString(0,16);
+				result.fileName=b.getString(16,48);
+				result.fileType=b.getString(64,32);
+				result.blockCount=b.getString(96,16);
+				result.creationDate=b.getString(112,16);
+				return result;
+			}
+		for (int m=1;m<=3;m++)
+		{
+		if (b.getString(16+m*128,name.length())==name)
+			{
+				result.descriptorType=b.getString(m*128,16);
+				result.fileName=b.getString(16+m*128,48);
+				result.fileType=b.getString(64+m*128,32);
+				result.blockCount=b.getString(96+m*128,16);
+				result.creationDate=b.getString(112+m*128,16);
+				return result;
+			}
+		}
 	}
 
-	return 0;
+				result.descriptorType.erase();  //если не найден, то тип описателя пустой
+				return result;
+		
 }
 
 	
+
+int FileSystem::deleteRecord(string name)
+{
+	Block b;
+	for (int i=0;i<62;i++)
+	{
+		b=readBlock(i+6);
+		if ((b.getString(16,name.length())==name)&&!(i%2==0))
+			{
+				b.InsertString(0,"0010000000000000");
+				for(int n=0;n<48;n++)   b.InsertString(16+n,"0");
+				writeBlock(b,i+6);
+				return 0;
+			}
+		for (int m=1;m<=3;m++)
+		if (b.getString(16+m*128,name.length())==name)
+			{
+				b.InsertString(m*128,"0010000000000000");
+				for(int n=0;n<48;n++)   b.InsertString(16+m*128+n,"0");
+				writeBlock(b,i+6);
+				return 0;
+			}
+		
+	}
+	return 1; //код ошибки при отсутствии
+}
+
+
+int FileSystem::writeRecord(FileDescriptor input)
+{
+
+	Block b;
+	for (int i=0;i<62;i++)
+	{
+		b=readBlock(i+6);
+		if (((b.getString(0,16)=="0010000000000000")||(b.getString(0,16)=="0000000000000000"))&&!(i%2==0))
+			{
+				b.InsertString(0,input.descriptorType);
+				b.InsertString(16,input.fileName);
+				b.InsertString(64,input.fileType);
+				b.InsertString(96,input.blockCount);
+				b.InsertString(112,input.creationDate);
+				writeBlock(b,i+6);
+				return 0;
+			}
+		for (int m=1;m<=3;m++)
+		if ((b.getString(m*128,16)=="0010000000000000")||(b.getString(m*128,16)=="0000000000000000"))
+			{
+				b.InsertString(m*128,input.descriptorType);
+				b.InsertString(m*128+16,input.fileName);
+				b.InsertString(m*128+64,input.fileType);
+				b.InsertString(m*128+96,input.blockCount);
+				b.InsertString(m*128+112,input.creationDate);
+				writeBlock(b,i+6);
+				return 0;
+			}
+		
+	}
+	return 1;     //нет свободного места-ошибка 1
+}
 
 
 void FileSystem::closeFileSystem()
 {
 	memory.close();
 
-}
-
-FileDescriptor FileSystem::getDescriptor()
-{
-	FileDescriptor f;
-	return(f);
 }

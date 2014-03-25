@@ -11,8 +11,11 @@ public:
 	void format(string,string,string,string);
 	Block readBlock(int);
 	void writeBlock(Block,int);
-	int findRecord(string);
+
+	FileDescriptor getRecord(string);   //+
+	int writeRecord(FileDescriptor);    //+
+	int deleteRecord(string);			//+
+
 	void closeFileSystem();
-	FileDescriptor getDescriptor();
 	
 };
