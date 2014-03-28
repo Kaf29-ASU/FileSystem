@@ -9,26 +9,26 @@ void FileSystemMonitor::startWorking()
 }
 
 
-int FileSystemMonitor::showMenu()
+string FileSystemMonitor::showMenu()
 {
 	cout<<endl;
-	cout<<"1 - Вывести оглавление как есть"<<endl;
-	cout<<"2 - Вывести оглавление по алфавиту"<<endl;
-	cout<<"3 - Вывести информацию о пустом месте на диске и его характеристиках"<<endl;
-	cout<<"4 - создать файл"<<endl;
-	cout<<"5 - Удалить файл"<<endl;
-	cout<<"6 - Перемеиновать файл"<<endl;
-	cout<<"7 - Добавить информацию в существующий файл"<<endl;
-	cout<<"8 - Сжатие файловой системы"<<endl;
-	cout<<"9 - Изменение типа файла"<<endl;
-	cout<<"10 - Записать метку тома и владельца"<<endl;
-	cout<<"11 - Показать справку по командам файловой системы"<<endl;
+	cout<<"1(showContent) - Вывести оглавление как есть"<<endl;
+	cout<<"2(showInAlphavit) - Вывести оглавление по алфавиту"<<endl;
+	cout<<"3(showInformation) - Вывести информацию о пустом месте на диске и его характеристиках"<<endl;
+	cout<<"4(createNewFile) - создать файл"<<endl;
+	cout<<"5(deleteFile) - Удалить файл"<<endl;
+	cout<<"6(reNameFile) - Перемеиновать файл"<<endl;
+	cout<<"7(addInformation) - Добавить информацию в существующий файл"<<endl;
+	cout<<"8(compression) - Сжатие файловой системы"<<endl;
+	cout<<"9(changeFileType) - Изменение типа файла"<<endl;
+	cout<<"10(writeFileSystemInformation) - Записать метку тома и владельца"<<endl;
+	cout<<"11(showHelp) - Показать справку по командам файловой системы"<<endl;
 	cout<<"0 - Завершение работы с программой"<<endl;
 	cout<<"Введите номер команды"<<endl;
-	int comandNumber;
-	cin>>comandNumber;
+	string comand;
+	cin>>comand;
 	cout<<endl;
-	return(comandNumber);
+	return(comand);
 }
 
 void FileSystemMonitor::showHelp()
@@ -173,20 +173,44 @@ void FileSystemMonitor::workCycle()
 	for(;;)
 	{
 		cout<<endl;
-		int comandNumber=showMenu();
+		string comand=showMenu();
 		int resultCode=0;
-		if(comandNumber==0) break;
-		if(comandNumber==1){ showTableOfContents(); resultCode=1;};
-		if(comandNumber==2){ showTableInAlphavit(); resultCode=1;};
-		if(comandNumber==3){ showInformation(); resultCode=1;};
-		if(comandNumber==4){ createNewFile(); resultCode=1;};
-		if(comandNumber==5){ deleteFile(); resultCode=1;};
-		if(comandNumber==6){ reNameFile(); resultCode=1;};
-		if(comandNumber==7){ addInformationToFile(); resultCode=1;};
-		if(comandNumber==8){ compressionOfFileSystem(); resultCode=1;};
-		if(comandNumber==9){ changeFileType(); resultCode=1;};
-		if(comandNumber==10){ writeVolumeLabelAndOwner(); resultCode=1;};
-		if(comandNumber==11){ showHelp(); resultCode=1; this->fileSystem.closeFileSystem(); };
+		if((comand.compare("0")==0)||(comand.compare("exit")==0))
+			{ break;};
+
+		if((comand.compare("1")==0)||(comand.compare("showContent")==0))
+			{ showTableOfContents(); resultCode=1;};
+
+		if((comand.compare("2")==0)||(comand.compare("showInAlphavit")==0))
+			{ showTableInAlphavit(); resultCode=1;};
+
+		if((comand.compare("3")==0)||(comand.compare("showInformation")==0))
+			{ showInformation(); resultCode=1;};
+
+		if((comand.compare("4")==0)||(comand.compare("createNewFile")==0))
+			{ createNewFile(); resultCode=1;};
+
+		if((comand.compare("5")==0)||(comand.compare("deleteFile")==0))
+			{ deleteFile(); resultCode=1;};
+
+		if((comand.compare("6")==0)||(comand.compare("reNameFile")==0))
+			{ reNameFile(); resultCode=1;};
+
+		if((comand.compare("7")==0)||(comand.compare("addInformation")==0))
+			{ addInformationToFile(); resultCode=1;};
+
+		if((comand.compare("8")==0)||(comand.compare("compression")==0))
+			{ compressionOfFileSystem(); resultCode=1;};
+
+		if((comand.compare("9")==0)||(comand.compare("changeFileType")==0))
+			{ changeFileType(); resultCode=1;};
+
+		if((comand.compare("10")==0)||(comand.compare("writeFileSystemInformation")==0))
+			{ writeVolumeLabelAndOwner(); resultCode=1;};
+
+		if((comand.compare("11")==0)||(comand.compare("showHelp")==0))
+			{ showHelp(); resultCode=1; this->fileSystem.closeFileSystem(); };
+
 		if(!resultCode) cout<<"Некорректное входное значение. Повторите ввод"<<endl;
 	}
 }

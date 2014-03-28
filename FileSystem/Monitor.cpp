@@ -19,9 +19,9 @@ int main()
 	//f.writeBlock(r,6);
 	int y;
 
-	y=f.findRecord("5");
+//	y=f.findRecord('5');
 	char c;
-	f.memory.seekg(y);
+	//f.memory.seekg(y);
 	c=f.memory.get();
 	//f.writeBlock(r,6);
 	r=f.readBlock(7);
