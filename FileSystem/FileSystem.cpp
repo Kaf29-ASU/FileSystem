@@ -154,6 +154,38 @@ int FileSystem::writeRecord(FileDescriptor input)
 	for (int i=0;i<62;i++)
 	{
 		b=readBlock(i+6);
+
+		if ((i%2==0)&&(b.getInt(16,16)<i))
+		{
+			string tmp;
+			stringstream buf;
+			buf<<i;
+			buf>>tmp;
+			while(tmp.length()!=16)
+			{
+				tmp="0"+tmp;
+			}
+			for (int k=0;k<62;k=k+2)
+			{
+				Block t=readBlock(k+6);
+				t.InsertString(32,tmp);
+				writeBlock(t,k+6);
+			}
+			if(i!=0){
+			string tmp;
+			stringstream buf;
+			buf<<234;
+			buf>>tmp;
+			while(tmp.length()!=16)
+			{
+				tmp="0"+tmp;
+			}
+			Block a=readBlock(5+i);
+			b.InsertString(64,tmp);}
+			else b.InsertString(64,"0000000000000070");
+
+		}
+
 		if (((b.getString(0,16)=="0010000000000000")||(b.getString(0,16)=="0000000000000000"))&&!(i%2==0))
 			{
 				b.InsertString(0,input.descriptorType);
