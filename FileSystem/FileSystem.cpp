@@ -12,8 +12,9 @@ void FileSystem::openFile(string fileName)
 	memory.open(fileName+".txt");
 }
 
-void FileSystem::format(string version, string tomName, string userName, string systemName)
+int FileSystem::format(string version, string tomName, string userName, string systemName)
 {
+	if(version.length()<3||tomName.length()<13||userName.length()<13||systemName.length()<13) return 1;
 	memory.clear();
 	Block firstBlock;		//загрузочный блок
 	firstBlock.Clean();
@@ -57,8 +58,7 @@ void FileSystem::format(string version, string tomName, string userName, string 
 		memory.write((char*)catalog[30].blockMassive[0].byteMassive, sizeof(catalog[30].blockMassive[0].byteMassive));
 		memory.write((char*)catalog[30].blockMassive[1].byteMassive, sizeof(catalog[30].blockMassive[1].byteMassive));
 
-
-	//memory.close();
+		return 0;
 }
 
 Block FileSystem::readBlock(int number)
@@ -77,8 +77,6 @@ void FileSystem::writeBlock(Block input, int place)
 
 	memory.seekp((place)*512);
 	memory.write((char*)input.byteMassive, sizeof(input.byteMassive));
-
-	//memory.close();
 	
 }
 
