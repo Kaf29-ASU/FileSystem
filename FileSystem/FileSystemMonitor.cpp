@@ -23,6 +23,7 @@ string FileSystemMonitor::showMenu()
 	cout<<"9 - chft"<<endl;
 	cout<<"10 - fsparam"<<endl;
 	cout<<"11 - help"<<endl;
+	cout<<"12 - createfs"<<endl;
 	cout<<"0 - exit"<<endl;
 	cout<<"Введите номер команды"<<endl;
 	string comand;
@@ -59,23 +60,28 @@ void FileSystemMonitor::showTableInAlphavit()
 
 void FileSystemMonitor::createNewFile()
 {
-	string fileName;
-	cout<<"Введите имя файла не превышающее 32 символа"<<endl;
-	cin>>fileName;
-	string fileType;
-	cout<<"Введите тип файла не превышающий 16 сиволов"<<endl;
-	cin>>fileType;
-	string fileSize;
-	cout<<"Введите размер файла в байтах"<<endl;
-	cin>>fileSize;
-	char creationDate[16];
-	time_t seconds = time(NULL);
-	tm* timeinfo = localtime(&seconds);
-	char* format = "%B %d, %Y";
-	strftime(creationDate, 16, format, timeinfo);
-	cout<<endl<<"Дата создания файла: "<<creationDate<<endl;
+	int resultCode;
+	resultCode=fileSystem.createNewFile();
+	switch(resultCode)
+	{
+	case(0):
+			cout<<"создаю файл"<<endl;
+
+			break;
+	case(2):
+			cout<<"недостаточно места в системе"<<endl;
+			break;
+	case(22):
+			cout<<"нет доступного места для записи в каталоге"<<endl;
+			break;
+	case(222):
+			cout<<"файл с таким именем уже существует"<<endl;
+	case(2222):
+			cout<<"ошибка ввода данных"<<endl;
+			break;
 	
-	cout<<"создаю файл"<<endl;
+
+	};
 }
 
 void FileSystemMonitor::showInformation()
@@ -131,21 +137,9 @@ void FileSystemMonitor::writeVolumeLabelAndOwner()
 	cout<<"меняю метку тома и владельца"<<endl;
 }
 
-void FileSystemMonitor::workCycle()
+void FileSystemMonitor::createNewFileSystem()
 {
-	startWorking();
-	cout<<"Если вы хотите работать с уже существующим файлом ведите 1"<<endl;
-	cout<<"Если вы хотите создать новый файл введите 2"<<endl;
-	int startType;
-	cin>>startType;
-	while((startType!=1)&&(startType!=2))
-	{
-		cout<<"Некорректный ввод. Введите 1 или 2"<<endl;
-		cin>>startType;
-	};
-	if(startType==2)
-	{
-		cout<<"Введите имя файла для сохранения файловой системы"<<endl;
+	cout<<"Введите имя файла для сохранения файловой системы"<<endl;
 		string fileSystemName;
 		cin>>fileSystemName;
 		fileSystem.createFile(fileSystemName);
@@ -162,6 +156,24 @@ void FileSystemMonitor::workCycle()
 		cout<<"print systemName"<<endl;
 		cin>>systemName;
 		this->fileSystem.format(version, tomName, userName, systemName);
+}
+
+void FileSystemMonitor::workCycle()
+{
+	startWorking();
+	cout<<"Если вы хотите работать с уже существующим файлом ведите 1"<<endl;
+	cout<<"Если вы хотите создать новый файл введите 2"<<endl;
+	int startType;
+	cin>>startType;
+	while((startType!=1)&&(startType!=2))
+	{
+		cout<<"Некорректный ввод. Введите 1 или 2"<<endl;
+		cin>>startType;
+	};
+	if(startType==2)
+	{
+		createNewFileSystem();
+	
 	};
 	if(startType==1)
 	{
@@ -176,7 +188,7 @@ void FileSystemMonitor::workCycle()
 		string comand=showMenu();
 		int resultCode=0;
 		if((comand.compare("0")==0)||(comand.compare("exit")==0))
-			{ break;};
+			{this->fileSystem.closeFileSystem(); break;};
 
 		if((comand.compare("1")==0)||(comand.compare("content")==0))
 			{ showTableOfContents(); resultCode=1;};
@@ -209,10 +221,16 @@ void FileSystemMonitor::workCycle()
 			{ writeVolumeLabelAndOwner(); resultCode=1;};
 
 		if((comand.compare("11")==0)||(comand.compare("help")==0))
-			{ showHelp(); resultCode=1; this->fileSystem.closeFileSystem(); };
+			{ showHelp(); resultCode=1; };
+
+		if((comand.compare("12")==0)||(comand.compare("createfs")==0))
+		{ createNewFileSystem(); resultCode=1;};
 
 		if(!resultCode) cout<<"Некорректное входное значение. Повторите ввод"<<endl;
-	}
+
+	};
 }
+
+
 
 

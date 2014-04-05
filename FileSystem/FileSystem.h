@@ -1,5 +1,7 @@
 #include "Segment.h"
 #include "FileDescriptor.h"
+#include <ctime>
+
 class FileSystem
 {
 private:
@@ -17,5 +19,7 @@ public:
 	int deleteRecord(string);			
 
 	void closeFileSystem();
+
+	int createNewFile();
 	
 };
