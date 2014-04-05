@@ -7,7 +7,7 @@ int main()
 	setlocale(LC_ALL, "Russian"); 
 	FileSystemMonitor f1;
 	FileSystem f;
-	f1.workCycle();
+	//f1.workCycle();
 	
 	//Block r;
 	//r.Clean();

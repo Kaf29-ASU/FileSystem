@@ -68,8 +68,10 @@
     <ClInclude Include="Word.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="addInformation.cpp" />
+    <ClCompile Include="addInformationToFile.cpp" />
     <ClCompile Include="Block.cpp" />
+    <ClCompile Include="changeFileType.cpp" />
+    <ClCompile Include="compressionOfFileSystem.cpp" />
     <ClCompile Include="createNewFile.cpp" />
     <ClCompile Include="deleteFile.cpp" />
     <ClCompile Include="FileDescriptor.cpp" />
@@ -81,6 +83,7 @@
     <ClCompile Include="showContent.cpp" />
     <ClCompile Include="showContentInAlphavit.cpp" />
     <ClCompile Include="showInformation.cpp" />
+    <ClCompile Include="writeVolumeLabelAndOwner.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -50,12 +50,16 @@ void FileSystemMonitor::showHelp()
 
 void FileSystemMonitor::showTableOfContents()
 {
-	cout<<"показываю оглавление"<<endl;
+	int resultCode;
+	resultCode=fileSystem.showTableOfContent();
+	cout<<"успешное завершение"<<endl;
 }
 
 void FileSystemMonitor::showTableInAlphavit()
 {
-	cout<<"показываю оглавление по алфавиту"<<endl;
+	int resultCode;
+	resultCode=fileSystem.showContentInAlphavit();
+	cout<<"успешное завершение"<<endl;
 }
 
 void FileSystemMonitor::createNewFile()
@@ -86,55 +90,116 @@ void FileSystemMonitor::createNewFile()
 
 void FileSystemMonitor::showInformation()
 {
-	cout<<"показываю информацию о пустом месте на диске"<<endl;
+	int resultCode;
+	resultCode=fileSystem.showInformation();
+	cout<<"успешное завершение"<<endl;
 }
 
 void FileSystemMonitor::deleteFile()
 {
-	cout<<"¬ведите им€ нужного файла"<<endl;
-	string fileName;
-	cin>>fileName;
-	cout<<"удал€ю файл"<<endl;
+	int resultCode;
+	resultCode=fileSystem.deleteFile();
+	switch(resultCode)
+	{
+	case(0):
+			cout<<"успешное завершение"<<endl;
+
+			break;
+	case(1):
+			cout<<"отсутствие искомого файла"<<endl;
+			break;
+	}
 }
 
 void FileSystemMonitor::reNameFile()
 {
-	cout<<"¬ведите им€ нужного файла"<<endl;
-	string fileName;
-	cin>>fileName;
-	cout<<"¬ведите новое им€ файла не превышающее 32 символа"<<endl;
-	string newFileName;
-	cin>>newFileName;
-	cout<<"переименовываю файл"<<endl;
+	int resultCode;
+	resultCode=fileSystem.reNameFile();
+	switch(resultCode)
+	{
+	case(0):
+			cout<<"успешное завершение"<<endl;
+			break;
+	case(1):
+			cout<<"отсутствие искомого файла"<<endl;
+			break;
+	case(2):
+			cout<<"файл с таким именем уже существует"<<endl;
+			break;
+	case(3):
+			cout<<"недопустима€ длина имени файла"<<endl;
+			break;
+	}
 }
 
 void FileSystemMonitor::addInformationToFile()
 {
-	cout<<"¬ведите им€ нужного файла"<<endl;
-	string fileName;
-	cin>>fileName;
-	cout<<"добавл€ю информацию в файл"<<endl;
+	int resultCode;
+	resultCode=fileSystem.addInformationToFile();
+	switch(resultCode)
+	{
+	case(0):
+			cout<<"успешное завершение"<<endl;
+			break;
+	case(1):
+			cout<<"отсутствие искомого файла"<<endl;
+			break;
+	case(2):
+			cout<<"файл имеет слишком большой размер"<<endl;
+			break;
+	
+	}
 }
 
 void FileSystemMonitor::compressionOfFileSystem()
 {
-	cout<<"сжимаю файловую систему"<<endl;
+	int resultCode;
+	resultCode=fileSystem.compressionOfFileSystem();
+	switch(resultCode)
+	{
+	case(0):
+			cout<<"успешное завершение"<<endl;
+			break;
+	
+	}
 }
 
 void FileSystemMonitor::changeFileType()
 {
-	cout<<"¬ведите им€ нужного файла"<<endl;
-	string fileName;
-	cin>>fileName;
-	cout<<"¬ведите новый тип файла не превышающий 16 символов"<<endl;
-	string fileType;
-	cin>>fileType;
-	cout<<"мен€ю тип файла"<<endl;
+	int resultCode;
+	resultCode=fileSystem.changeFileType();
+	switch(resultCode)
+	{
+	case(0):
+			cout<<"успешное завершение"<<endl;
+			break;
+	case(1):
+			cout<<"отсутствие искомого файла"<<endl;
+			break;
+	case(2):
+			cout<<"недопустимый тип файла"<<endl;
+			break;
+	
+	}
 }
 
 void FileSystemMonitor::writeVolumeLabelAndOwner()
 {
-	cout<<"мен€ю метку тома и владельца"<<endl;
+	int resultCode;
+	resultCode=fileSystem.writeVolumeLabelAndOwner();
+	switch(resultCode)
+	{
+	case(0):
+			cout<<"успешное завершение"<<endl;
+			break;
+	case(1):
+			cout<<"недопустимое им€ владельца"<<endl;
+			break;
+	case(2):
+			cout<<"недопустима€ метка тома"<<endl;
+			break;
+
+	}
 }
 
 void FileSystemMonitor::createNewFileSystem()
