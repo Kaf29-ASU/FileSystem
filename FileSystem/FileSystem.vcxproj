@@ -68,13 +68,19 @@
     <ClInclude Include="Word.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="addInformation.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="createNewFile.cpp" />
+    <ClCompile Include="deleteFile.cpp" />
     <ClCompile Include="FileDescriptor.cpp" />
     <ClCompile Include="FileSystem.cpp" />
     <ClCompile Include="FileSystemMonitor.cpp" />
     <ClCompile Include="Monitor.cpp" />
+    <ClCompile Include="reNameFile.cpp" />
     <ClCompile Include="Segment.cpp" />
+    <ClCompile Include="showContent.cpp" />
+    <ClCompile Include="showContentInAlphavit.cpp" />
+    <ClCompile Include="showInformation.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
