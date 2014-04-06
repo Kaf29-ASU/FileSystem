@@ -33,4 +33,10 @@ int FileSystem::addInformationToFile()
 	
 
 		return(resultCode);
+
+{
+	int resultCode=0;
+
+	return(resultCode);
+
 }

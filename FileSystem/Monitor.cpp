@@ -4,9 +4,9 @@
 
 int main()
 {
-	//setlocale(LC_ALL, "Russian"); 
-	//FileSystemMonitor f1;
-	//FileSystem f;
+	setlocale(LC_ALL, "Russian"); 
+	FileSystemMonitor f1;
+	FileSystem f;
 	//f1.workCycle();
 	
 	//Block r;
