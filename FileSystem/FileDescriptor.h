@@ -13,5 +13,6 @@ public:
 	string fileType;
 	string blockCount;
 	string creationDate;
+	string firstBlockNumber;
 
 };
