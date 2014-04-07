@@ -1,8 +1,13 @@
 #include "FileSystem.h"
 
+<<<<<<< HEAD
+int FileSystem::addInformationToFile(){return 0;}/*
+{//Обозначаем переменные
+=======
 int FileSystem::addInformationToFile()
 {
 	//Обозначаем переменные
+>>>>>>> origin/master
 	string fileName;
 	int InformationCount;//Кол-во добавляемой информации, 
 	int resultCode;
@@ -29,3 +34,4 @@ int FileSystem::addInformationToFile()
 return(resultCode);
 
 }
+*/
