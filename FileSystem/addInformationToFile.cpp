@@ -1,7 +1,8 @@
 #include "FileSystem.h"
 
 int FileSystem::addInformationToFile()
-{//ќбозначаем переменные
+{
+	//ќбозначаем переменные
 	string fileName;
 	int InformationCount;// ол-во добавл€емой информации, 
 	int resultCode;
@@ -25,18 +26,6 @@ int FileSystem::addInformationToFile()
 		return(1);
 	NextFile = getRecord(fileName);//“ут нужно бы заху€рить еще поиск следющего файла, так-то
 
-
-
-
-
-
-	
-
-		return(resultCode);
-
-{
-	int resultCode=0;
-
-	return(resultCode);
+return(resultCode);
 
 }
