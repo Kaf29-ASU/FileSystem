@@ -1,6 +1,6 @@
 #include "FileSystem.h"
 
-int FileSystem::addInformationToFile()
+int FileSystem::addInformationToFile(){return 0;}/*
 {//Обозначаем переменные
 	string fileName;
 	int InformationCount;//Кол-во добавляемой информации, 
@@ -40,3 +40,4 @@ int FileSystem::addInformationToFile()
 	return(resultCode);
 
 }
+*/
