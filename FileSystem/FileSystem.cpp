@@ -118,7 +118,44 @@ FileDescriptor FileSystem::getRecord(string name)
 		
 }
 
-	
+
+FileDescriptor FileSystem::getNextRecord(string name)
+{
+	Block b;
+	Block a;
+	FileDescriptor result;
+	for (int i = 0; i<62; i++)
+	{
+		b = readBlock(i + 6);
+		if ((b.getString(16, name.length()) == name) && !(i % 2 == 0))
+		{
+			a = readBlock(i + 6);
+			result.descriptorType = a.getString(128, 16);
+			result.fileName = a.getString(16 + 128, 48);
+			result.fileType = a.getString(64 + 128, 32);
+			result.blockCount = a.getString(96 + 128, 16);
+			result.creationDate = a.getString(112 + 128, 16);
+			return result;
+		}
+		for (int m = 1; m <= 3; m++)
+		{
+			if (b.getString(16 + m * 128, name.length()) == name)
+			{
+				a = readBlock(16 + m * 128);
+				result.descriptorType = a.getString((m + 1) * 128, 16);
+				result.fileName = a.getString(16 + (m + 1) * 128, 48);
+				result.fileType = a.getString(64 + (m + 1) * 128, 32);
+				result.blockCount = a.getString(96 + (m + 1) * 128, 16);
+				result.creationDate = a.getString(112 + (m + 1) * 128, 16);
+				return result;
+			}
+		}
+	}
+
+	result.descriptorType.erase();  //если не найден, то тип описателя пустой
+	return result;
+
+}
 
 int FileSystem::deleteRecord(string name)
 {

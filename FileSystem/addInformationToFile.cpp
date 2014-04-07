@@ -1,8 +1,14 @@
 #include "FileSystem.h"
 
 int FileSystem::addInformationToFile()
+<<<<<<< HEAD
 {//ќбозначаем переменные
 	string FileName;
+=======
+{
+	//ќбозначаем переменные
+	string fileName;
+>>>>>>> e881486cc22b5f2da5945db442d4a3d6e0080c98
 	int InformationCount;// ол-во добавл€емой информации, 
 	int resultCode;
 	resultCode = 1;
@@ -27,6 +33,7 @@ int FileSystem::addInformationToFile()
 	AddFile = getRecord(FileName);
 	if ((AddFile.fileType) == "")
 		return(1);
+<<<<<<< HEAD
 	NextFile = getRecord(FileName);//“ут нужно бы заху€рить еще поиск следющего файла, так-то
 	
 
@@ -37,6 +44,12 @@ int FileSystem::addInformationToFile()
 
 	//AddFile.blockCount += InformationCount; //”величим кол-во инф. в файле
 	return(resultCode);
+=======
+	NextFile = getRecord(fileName);//“ут нужно бы заху€рить еще поиск следющего файла, так-то
+
+return(resultCode);
+
+>>>>>>> e881486cc22b5f2da5945db442d4a3d6e0080c98
 }
 
 //{

@@ -14,7 +14,9 @@ public:
 	Block readBlock(int);
 	void writeBlock(Block,int);
 
-	FileDescriptor getRecord(string);   
+	FileDescriptor getRecord(string);  
+
+	FileDescriptor getNextRecord(string);
 	int writeRecord(FileDescriptor);    
 	int deleteRecord(string);			
 
