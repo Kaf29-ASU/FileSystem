@@ -4,13 +4,15 @@ int FileSystem::addInformationToFile()
 {//Обозначаем переменные
 	string FileName;
 	int InformationCount;//Кол-во добавляемой информации, 
-	int resultCode;
-	resultCode = 1;
+	int CountLength=8;
+	int resultCode = 1;
 	int lenCritical = 48;
 	int CntCritical = 2 ^ 9;
 	int BlockNf, SegmNf, BlockNs, SegmNs; //Номер блока , номер сегмента
 	FileDescriptor AddFile;
 	FileDescriptor NextFile;
+	FileDescriptor LastFile;
+	int ResultCount;
 	int freeSpace; //кол-во свободных блоков перед следующим файлом
 
 	//Собствено функция
@@ -28,13 +30,11 @@ int FileSystem::addInformationToFile()
 	if ((AddFile.fileType) == "")
 		return(1);
 	NextFile = getNextRecord(FileName);
-	/*
-	if (((AddFile.firstBlockNumber) + (AddFile.blockCount) + InformationCount / 512) >= (NextFile.firstBlockNumber))
-		
-	else
-
-	AddFile.blockCount += InformationCount; //Увеличим кол-во инф. в файле
-	*/
+	//LastFile=getLastFile();
+	AddFile.blockCount=toString((toInt(AddFile.blockCount)+InformationCount),CountLength); //Увеличим кол-во инф. в файле
+	if ((toInt(AddFile.firstBlockNumber) + toInt(AddFile.blockCount) + InformationCount / 512) > (toInt(NextFile.firstBlockNumber)))
+	{//AddFile.firstBlockNumber=FindLastFi
+	}	
 	return(resultCode);
 }
 
