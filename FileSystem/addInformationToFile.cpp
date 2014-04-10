@@ -27,12 +27,12 @@ int FileSystem::addInformationToFile()
 		return(1);
 
 	AddFile = getRecord(FileName);
-	if ((AddFile.fileType) == "")
+	if ((AddFile.fileType) == "")					//!!!!!!!в дескрипторе число блоков сделал интом!!!!!!
 		return(1);
 	NextFile = getNextRecord(FileName);
 	//LastFile=getLastFile();
-	AddFile.blockCount=toString((toInt(AddFile.blockCount)+InformationCount),CountLength); //Увеличим кол-во инф. в файле
-	if ((toInt(AddFile.firstBlockNumber) + toInt(AddFile.blockCount) + InformationCount / 512) > (toInt(NextFile.firstBlockNumber)))
+	AddFile.blockCount=(AddFile.blockCount+InformationCount); //Увеличим кол-во инф. в файле
+	if ((toInt(AddFile.firstBlockNumber) + AddFile.blockCount + InformationCount / 512) > (toInt(NextFile.firstBlockNumber)))
 	{//AddFile.firstBlockNumber=FindLastFi
 	}	
 	return(resultCode);
