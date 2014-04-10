@@ -8,20 +8,16 @@ private:
 	
 public:
 	fstream memory;
-	void createFile(string);
+	void createFile(string);			//открытие существующего физического файла или создание нового
 	void openFile(string);
-	int format(string,string,string,string);
-	Block readBlock(int);
-	void writeBlock(Block,int);
-
-	FileDescriptor getRecord(string);  
-
+	int format(string,string,string,string); //форматирование файловой системы
+	Block readBlock(int);			//считывание блока, заданного номером
+	void writeBlock(Block,int);		//запись блока в заданную позицию файла
+	FileDescriptor getRecord(string);  //извлечение описателя файла по имени
 	FileDescriptor getNextRecord(string);
-	int writeRecord(FileDescriptor);    
-	int deleteRecord(string);			
-
-	void closeFileSystem();
-
+	int writeRecord(FileDescriptor);    //сохранение записи о файле в конец 
+	int deleteRecord(string);		//удаление записи о файле	
+	void closeFileSystem();			
 	int showTableOfContent();
 	int showContentInAlphavit();
 	int createNewFile();
@@ -32,6 +28,4 @@ public:
 	int changeFileType();
 	int compressionOfFileSystem();
 	int writeVolumeLabelAndOwner();
-
-	
 };

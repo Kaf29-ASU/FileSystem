@@ -4,7 +4,7 @@
 void FileSystem:: createFile(string address)
 {
 	memory.open(address+".txt",ios::out);
-	//memory.close();
+	memory.close();
 }
 
 void FileSystem::openFile(string fileName)
@@ -14,7 +14,7 @@ void FileSystem::openFile(string fileName)
 
 int FileSystem::format(string version, string tomName, string userName, string systemName)
 {
-	if(version.length()<3||tomName.length()<13||userName.length()<13||systemName.length()<13) return 1;
+	if(version.length()>2||tomName.length()>12||userName.length()>12||systemName.length()>12) return 1;
 	memory.clear();
 	Block firstBlock;		//загрузочный блок
 	firstBlock.Clean();
@@ -44,8 +44,6 @@ int FileSystem::format(string version, string tomName, string userName, string s
 		catalog[i].nextSegmentNumber=(i+1);
 		catalog[i].busySegmentCount=0;
 		catalog[i].write();
-		catalog[i].blockMassive[1].byteMassive[128]='1';
-		catalog[i].blockMassive[1].byteMassive[16+128]='5';
 		memory.write((char*)catalog[i].blockMassive[0].byteMassive, sizeof(catalog[i].blockMassive[0].byteMassive));
 		memory.write((char*)catalog[i].blockMassive[1].byteMassive, sizeof(catalog[i].blockMassive[1].byteMassive));
 
@@ -196,7 +194,7 @@ int FileSystem::writeRecord(FileDescriptor input)
 		{
 			string tmp;
 			stringstream buf;
-			buf<<i;
+			buf<<i+1;
 			buf>>tmp;
 			while(tmp.length()!=16)
 			{
