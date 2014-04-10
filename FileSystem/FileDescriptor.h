@@ -11,7 +11,7 @@ public:
 	string descriptorType;
 	string fileName;
 	string fileType;
-	string blockCount;
+	int blockCount;
 	string creationDate;
 	string firstBlockNumber;
 

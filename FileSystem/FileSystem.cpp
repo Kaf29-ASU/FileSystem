@@ -64,7 +64,7 @@ int FileSystem::format(string version, string tomName, string userName, string s
 	{
 		catalog[i].clean();
 		catalog[i].segmentCount=31;
-		catalog[i].nextSegmentNumber=(i+1);
+		catalog[i].nextSegmentNumber=(i+2);
 		catalog[i].busySegmentCount=0;
 		catalog[i].write();
 		memory.write((char*)catalog[i].blockMassive[0].byteMassive, sizeof(catalog[i].blockMassive[0].byteMassive));
@@ -101,7 +101,46 @@ void FileSystem::writeBlock(Block input, int place)
 	
 }
 
+FileDescriptor FileSystem::getRecord(int number)
+{
 
+	Block b;
+	FileDescriptor result;
+	if (number>217) {result.descriptorType.erase(); return result;}
+				
+
+	int k;
+		if (number%7==0) k=number/7; else k=1+(number/7);   //номер сегмента куда идет запись
+
+		int n;
+		n=number%7;
+		if (n==0) n=7;    //номер записи в сегменте
+		
+		int i;
+		if (n<=3) i=k*2-2; else i=k*2-1;		//номер считываемого блока относительно начала каталога
+
+		b=readBlock(i+6);
+		if (i%2==0)
+			{
+				result.descriptorType=b.getString((n)*128,16);
+				result.fileName=b.getString((n)*128+16,48);
+				result.fileType=b.getString((n)*128+64,32);
+				result.blockCount=b.getInt((n)*128+96,16);
+				result.creationDate=b.getString((n)*128+112,16);
+				return result;
+			}else{
+				result.descriptorType=b.getString((n-1-3)*128,16);
+				result.fileName=b.getString(16+(n-1-3)*128,48);
+				result.fileType=b.getString(64+(n-1-3)*128,32);
+				result.blockCount=b.getInt(96+(n-1-3)*128,16);
+				result.creationDate=b.getString(112+(n-1-3)*128,16);
+				return result;
+			}
+		
+
+				result.descriptorType.erase();  //если не найден, то тип описателя пустой
+				return result;
+}
 
 
 FileDescriptor FileSystem::getRecord(string name)
@@ -116,7 +155,7 @@ FileDescriptor FileSystem::getRecord(string name)
 				result.descriptorType=b.getString(0,16);
 				result.fileName=b.getString(16,48);
 				result.fileType=b.getString(64,32);
-				result.blockCount=b.getString(96,16);
+				result.blockCount=b.getInt(96,16);
 				result.creationDate=b.getString(112,16);
 				return result;
 			}
@@ -127,7 +166,7 @@ FileDescriptor FileSystem::getRecord(string name)
 				result.descriptorType=b.getString(m*128,16);
 				result.fileName=b.getString(16+m*128,48);
 				result.fileType=b.getString(64+m*128,32);
-				result.blockCount=b.getString(96+m*128,16);
+				result.blockCount=b.getInt(96+m*128,16);
 				result.creationDate=b.getString(112+m*128,16);
 				return result;
 			}
@@ -136,6 +175,34 @@ FileDescriptor FileSystem::getRecord(string name)
 
 				result.descriptorType.erase();  //если не найден, то тип описателя пустой
 				return result;
+		
+}
+
+
+int FileSystem::getRecordNumber(string name)
+{
+	Block b;
+	int result;
+	for (int i=0;i<62;i++)
+	{
+		b=readBlock(i+6);
+		if (i%2==0)
+			{
+				for(int m=1;m<=3;m++)
+				{
+					if (b.getString(16+m*128,name.length())==name){
+						result=m+4*((i+1)/2)+3*(((i+1)%2)+((i+1)/2))-3;
+						return result;}
+				}	
+		}else{
+			for(int m=1;m<=4;m++)
+				{
+					if (b.getString(16+(m-1)*128,name.length())==name){
+						result=m+4*((i+1)/2)+3*(((i+1)%2)+((i+1)/2))-4;
+						return result;}
+			}}
+	}
+				return 0;
 		
 }
 
@@ -154,7 +221,7 @@ FileDescriptor FileSystem::getNextRecord(string name)
 			result.descriptorType = a.getString(128, 16);
 			result.fileName = a.getString(16 + 128, 48);
 			result.fileType = a.getString(64 + 128, 32);
-			result.blockCount = a.getString(96 + 128, 16);
+			result.blockCount = a.getInt(96 + 128, 16);
 			result.creationDate = a.getString(112 + 128, 16);
 			return result;
 		}
@@ -166,7 +233,7 @@ FileDescriptor FileSystem::getNextRecord(string name)
 				result.descriptorType = a.getString((m + 1) * 128, 16);
 				result.fileName = a.getString(16 + (m + 1) * 128, 48);
 				result.fileType = a.getString(64 + (m + 1) * 128, 32);
-				result.blockCount = a.getString(96 + (m + 1) * 128, 16);
+				result.blockCount = a.getInt(96 + (m + 1) * 128, 16);
 				result.creationDate = a.getString(112 + (m + 1) * 128, 16);
 				return result;
 			}
@@ -205,6 +272,45 @@ int FileSystem::deleteRecord(string name)
 }
 
 
+int FileSystem::writeRecord(FileDescriptor input,int place)
+{
+	Block b;
+	b.Clean();
+		int k;
+		if (place%7==0) k=place/7; else k=1+(place/7);   //номер сегмента куда идет запись
+
+		int n;
+		n=place%7;
+		if (n==0) n=7;    //номер записи в сегменте
+		
+		int i;
+		if (n<=3) i=k*2-2; else i=k*2-1;		//номер считываемого блока относительно начала каталога
+
+
+		
+		if (i%2==0)
+			{
+				b.InsertString((n)*128,input.descriptorType);
+				b.InsertString((n)*128+16,input.fileName);
+				b.InsertString((n)*128+64,input.fileType);
+				b.InsertString((n)*128+96,toString(input.blockCount,16));
+				b.InsertString((n)*128+112,input.creationDate);
+				writeBlock(b,i+6);
+				return 0;
+			}else{
+				b.InsertString((n-1-3)*128,input.descriptorType);
+				b.InsertString((n-1-3)*128+16,input.fileName);
+				b.InsertString((n-1-3)*128+64,input.fileType);
+				b.InsertString((n-1-3)*128+96,toString(input.blockCount,16));
+				b.InsertString((n-1-3)*128+112,input.creationDate);
+				writeBlock(b,i+6);
+				return 0;}
+		
+	
+	return 1;     //нет свободного места-ошибка 1
+}
+
+
 int FileSystem::writeRecord(FileDescriptor input)
 {
 
@@ -213,7 +319,7 @@ int FileSystem::writeRecord(FileDescriptor input)
 	{
 		b=readBlock(i+6);
 
-		if ((i%2==0)&&(b.getInt(16,16)<=i+1))
+		if ((i%2==0)&&(b.getInt(16,16)<=i+2))
 		{
 			string tmp;
 			tmp=toString(i/2+1,16);
@@ -233,23 +339,23 @@ int FileSystem::writeRecord(FileDescriptor input)
 
 		}
 
-		if (((b.getString(0,16)=="0010000000000000")||(b.getString(0,16)=="0000000000000000"))&&!(i%2==0))
+		if ((((b.getInt(96,16)>input.blockCount)&&(b.getString(0,16)=="0010000000000000"))||(b.getString(0,16)=="0000000000000000"))&&!(i%2==0))
 			{
 				b.InsertString(0,input.descriptorType);
 				b.InsertString(16,input.fileName);
 				b.InsertString(64,input.fileType);
-				b.InsertString(96,input.blockCount);
+				b.InsertString(96,toString(input.blockCount,16));
 				b.InsertString(112,input.creationDate);
 				writeBlock(b,i+6);
 				return 0;
 			}
 		for (int m=1;m<=3;m++)
-		if ((b.getString(m*128,16)=="0010000000000000")||(b.getString(m*128,16)=="0000000000000000"))
+		if (((b.getInt(m*128+96,16)>input.blockCount)&&(b.getString(m*128,16)=="0010000000000000"))||(b.getString(m*128,16)=="0000000000000000"))
 			{
 				b.InsertString(m*128,input.descriptorType);
 				b.InsertString(m*128+16,input.fileName);
 				b.InsertString(m*128+64,input.fileType);
-				b.InsertString(m*128+96,input.blockCount);
+				b.InsertString(m*128+96,toString(input.blockCount,16));
 				b.InsertString(m*128+112,input.creationDate);
 				writeBlock(b,i+6);
 				return 0;
