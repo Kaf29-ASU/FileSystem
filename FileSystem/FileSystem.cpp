@@ -1,7 +1,29 @@
 #include "FileSystem.h"
 
+string FileSystem::toString(int n, int length)
+{
+			string tmp;
+			stringstream buf;
+			buf<<n;
+			buf>>tmp;
+			while(tmp.length()!=length)
+			{
+				tmp="0"+tmp;
+			}
+			return tmp;
+}
 
-void FileSystem:: createFile(string address)
+int FileSystem::toInt(string s)
+{
+	stringstream buf;
+	buf<<s;
+	int out;
+	buf>>out;
+	return out;
+}
+
+
+void FileSystem::createFile(string address)
 {
 	memory.open(address+".txt",ios::out);
 	memory.close();
@@ -190,31 +212,20 @@ int FileSystem::writeRecord(FileDescriptor input)
 	{
 		b=readBlock(i+6);
 
-		if ((i%2==0)&&(b.getInt(16,16)<i))
+		if ((i%2==0)&&(b.getInt(16,16)<=i+1))
 		{
 			string tmp;
-			stringstream buf;
-			buf<<i+1;
-			buf>>tmp;
-			while(tmp.length()!=16)
-			{
-				tmp="0"+tmp;
-			}
+			tmp=toString(i/2+1,16);
 			for (int k=0;k<62;k=k+2)
 			{
 				Block t=readBlock(k+6);
 				t.InsertString(32,tmp);
 				writeBlock(t,k+6);
 			}
+			b.InsertString(32,tmp);
 			if(i!=0){
 			string tmp;
-			stringstream buf;
-			buf<<234;
-			buf>>tmp;
-			while(tmp.length()!=16)
-			{
-				tmp="0"+tmp;
-			}
+			tmp=toString(234,16);
 			Block a=readBlock(5+i);
 			b.InsertString(64,tmp);}
 			else b.InsertString(64,"0000000000000070");

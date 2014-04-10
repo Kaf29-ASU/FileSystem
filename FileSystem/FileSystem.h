@@ -28,4 +28,6 @@ public:
 	int changeFileType();
 	int compressionOfFileSystem();
 	int writeVolumeLabelAndOwner();
+	string toString(int,int);
+	int toInt(string);
 };
