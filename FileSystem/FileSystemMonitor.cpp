@@ -220,7 +220,8 @@ void FileSystemMonitor::createNewFileSystem()
 		string systemName;
 		cout<<"print systemName"<<endl;
 		cin>>systemName;
-		this->fileSystem.format(version, tomName, userName, systemName);
+		fileSystem.createFile(fileSystemName);
+		fileSystem.format(version, tomName, userName, systemName);
 }
 
 void FileSystemMonitor::workCycle()
@@ -253,7 +254,7 @@ void FileSystemMonitor::workCycle()
 		string comand=showMenu();
 		int resultCode=0;
 		if((comand.compare("0")==0)||(comand.compare("exit")==0))
-			{this->fileSystem.closeFileSystem(); break;};
+			{fileSystem.closeFileSystem(); break;};
 
 		if((comand.compare("1")==0)||(comand.compare("content")==0))
 			{ showTableOfContents(); resultCode=1;};

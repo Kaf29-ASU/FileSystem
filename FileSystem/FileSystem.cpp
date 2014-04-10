@@ -27,6 +27,7 @@ void FileSystem::createFile(string address)
 {
 	memory.open(address+".txt",ios::out);
 	memory.close();
+	openFile(address);
 }
 
 void FileSystem::openFile(string fileName)
