@@ -17,6 +17,7 @@ public:
 	void changeFileType();
 	void writeVolumeLabelAndOwner();
 	void showTableInAlphavit();
+	void formatFileSystem();
 
 	void startWorking();
 	string showMenu();

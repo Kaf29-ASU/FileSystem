@@ -45,7 +45,8 @@ void FileSystemMonitor::showHelp()
 	cout<<"8 - Функция осуществляет дефрагментацию диска"<<endl;
 	cout<<"9 - Функция изменяет тип существующего файла"<<endl;
 	cout<<"10 - С помощью данной функции изменяются метка тома и владелец файловой системы"<<endl;
-	cout<<"11 - Результат работы данной функции вы видите выше"<<endl<<endl<<endl;
+	cout<<"11 - Результат работы данной функции вы видите выше"<<endl;
+	cout<<"12 - Функция позволяет отформатировать файловую систему"<<endl<<endl<<endl;
 }
 
 void FileSystemMonitor::showTableOfContents()
@@ -224,6 +225,28 @@ void FileSystemMonitor::createNewFileSystem()
 		fileSystem.format(version, tomName, userName, systemName);
 }
 
+void FileSystemMonitor::formatFileSystem()
+{
+	cout<<"Введите имя файла для сохранения файловой системы"<<endl;
+		string fileSystemName;
+		cin>>fileSystemName;
+		fileSystem.createFile(fileSystemName);
+		string version;
+		cout<<"print version"<<endl;
+		cin>>version;
+		string tomName;
+		cout<<"print tomName"<<endl;
+		cin>>tomName;
+		string userName;
+		cout<<"print userName"<<endl;
+		cin>>userName;
+		string systemName;
+		cout<<"print systemName"<<endl;
+		cin>>systemName;
+		fileSystem.format(version, tomName, userName, systemName);
+};
+
+
 void FileSystemMonitor::workCycle()
 {
 	startWorking();
@@ -290,7 +313,7 @@ void FileSystemMonitor::workCycle()
 			{ showHelp(); resultCode=1; };
 
 		if((comand.compare("12")==0)||(comand.compare("createfs")==0))
-		{ createNewFileSystem(); resultCode=1;};
+		{ formatFileSystem(); resultCode=1;};
 
 		if(!resultCode) cout<<"Некорректное входное значение. Повторите ввод"<<endl;
 
