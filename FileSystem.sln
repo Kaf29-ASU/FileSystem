@@ -5,7 +5,17 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileSystem", "FileSystem\Fi
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FileSystemSetup1", "FileSystemSetup1\FileSystemSetup1.vdproj", "{B6736D53-9B3D-4D08-B2EF-664A6B27616E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{76AD3099-1EB3-4CC9-A02D-994F5C68D905}"
+	ProjectSection(SolutionItems) = preProject
+		FileSystem.vsmdi = FileSystem.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = FileSystem.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32
