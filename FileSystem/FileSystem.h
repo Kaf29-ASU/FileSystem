@@ -27,7 +27,7 @@ public:
 	int addInformationToFile();
 	int changeFileType();
 	int compressionOfFileSystem();
-	int writeVolumeLabelAndOwner();
+	int writeVolumeLabelAndOwner(string,string);
 	string toString(int,int);
 	int toInt(string);
 	int writeRecord(FileDescriptor,int);
