@@ -5,6 +5,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileSystem", "FileSystem\Fi
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FileSystemSetup1", "FileSystemSetup1\FileSystemSetup1.vdproj", "{B6736D53-9B3D-4D08-B2EF-664A6B27616E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestFileSYstem", "TestFileSYstem\TestFileSYstem.vcxproj", "{A1CCDF88-218E-410D-BAAB-EBA67A15F313}"
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{76AD3099-1EB3-4CC9-A02D-994F5C68D905}"
 EndProject
 Global
@@ -22,6 +23,10 @@ Global
 		{1E71F522-2D95-4B30-BF8B-2BAC22029D6A}.Release|Win32.Build.0 = Release|Win32
 		{B6736D53-9B3D-4D08-B2EF-664A6B27616E}.Debug|Win32.ActiveCfg = Debug
 		{B6736D53-9B3D-4D08-B2EF-664A6B27616E}.Release|Win32.ActiveCfg = Release
+		{A1CCDF88-218E-410D-BAAB-EBA67A15F313}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A1CCDF88-218E-410D-BAAB-EBA67A15F313}.Debug|Win32.Build.0 = Debug|Win32
+		{A1CCDF88-218E-410D-BAAB-EBA67A15F313}.Release|Win32.ActiveCfg = Release|Win32
+		{A1CCDF88-218E-410D-BAAB-EBA67A15F313}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
