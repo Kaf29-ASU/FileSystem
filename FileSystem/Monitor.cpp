@@ -4,18 +4,18 @@
 
 int main()
 {
-	//setlocale(LC_ALL, "Russian"); 
-	//FileSystemMonitor f1;
-	FileSystem f;
-	//f1.workCycle();
+	setlocale(LC_ALL, "Russian"); 
+	FileSystemMonitor f1;
+	//FileSystem f;
+	f1.workCycle();
 	
-	Block r;
-	r.Clean();
+	//Block r;
+	//r.Clean();
 	int y;
 	//string p=r.getString(0,4);
 	//f.createFile("4");
 	//f.toInt("00010");
-	f.openFile("4");
+	//f.openFile("4");
 	//f.format("23","tom","otherString","last");
 	FileDescriptor d;
 	FileDescriptor d1;
@@ -27,10 +27,10 @@ int main()
 	d.blockCount=123;
 	d.descriptorType="abccvc";
 	d.fileName="ascaxcx";
-	f.writeRecord(d,7);
-	d1=f.getRecord(f.getRecordNumber("232323"));
-	y=f.getRecordNumber("232323");
-	f.deleteRecord("232323");
+	//f.writeRecord(d,7);
+	//d1=f.getRecord(f.getRecordNumber("232323"));
+	//y=f.getRecordNumber("232323");
+	//f.deleteRecord("232323");
 	//f.writeBlock(r,6);
 
 //	y=f.findRecord('5');
@@ -40,5 +40,5 @@ int main()
 //	f.writeBlock(r,6);
 //	r=f.readBlock(6);
 	
-
+	
 };
