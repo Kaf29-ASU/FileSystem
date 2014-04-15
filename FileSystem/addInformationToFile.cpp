@@ -14,6 +14,8 @@ int FileSystem::addInformationToFile()
 	FileDescriptor LastFile;
 	int ResultCount;
 	int freeSpace; //кол-во свободных блоков перед следующим файлом
+	int RecordNumber,NextRecordNumber; //Номер изменяемой записи, номер следующей записи
+	int i; //Счетчик
 
 	//Собствено функция
 	cout << "Введите имя файла" << endl;
@@ -29,18 +31,28 @@ int FileSystem::addInformationToFile()
 	AddFile = getRecord(FileName);
 	if ((AddFile.fileType) == "")					//!!!!!!!в дескрипторе число блоков сделал интом!!!!!!
 		return(1);
-	NextFile = getNextRecord(FileName);
-	//LastFile=getLastFile();
-	AddFile.blockCount=(AddFile.blockCount+InformationCount); //Увеличим кол-во инф. в файле
+	RecordNumber=getRecordNumber(FileName);
+	NextRecordNumber=RecordNumber+1;
+	NextFile=getRecord(NextRecordNumber);
+	
+	//AddFile.blockCount=(AddFile.blockCount+InformationCount); //Увеличим кол-во инф. в файле
 	if ((toInt(AddFile.firstBlockNumber) + AddFile.blockCount + InformationCount / 512) > (toInt(NextFile.firstBlockNumber)))
-	{//AddFile.firstBlockNumber=FindLastFi
-	}	
+	{
+		LastFile=AddFile;
+		LastFile.blockCount+=InformationCount;
+		for(i=217;((getRecord(i).fileType)=="");i--)
+		LastFile.firstBlockNumber=toString((toInt(getRecord(i).firstBlockNumber)+getRecord(i).blockCount+1),8);
+		deleteRecord(FileName);
+		writeRecord(LastFile);
+		resultCode=0;
+	}
+	else 
+	{
+		//getRecord(FileName).blockCount+=InformationCount;
+		AddFile.blockCount=(AddFile.blockCount+InformationCount);
+
+		resultCode=0;
+	}
 	return(resultCode);
 }
 
-//{
-//	int resultCode=0;
-//
-//	return(resultCode);
-//
-//}
