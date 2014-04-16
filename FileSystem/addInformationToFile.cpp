@@ -26,7 +26,7 @@ int FileSystem::addInformationToFile()
 	cout << "Введите кол-во добавляемой информации" << endl;
 	cin >> InformationCount;
 	if (InformationCount > CntCritical)//Проверка ввода кол-ва информации 
-		return(1);
+		return(2);
 
 	AddFile = getRecord(FileName);
 	if ((AddFile.fileType) == "")					//!!!!!!!в дескрипторе число блоков сделал интом!!!!!!
