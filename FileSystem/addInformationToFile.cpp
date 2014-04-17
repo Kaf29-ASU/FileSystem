@@ -29,14 +29,14 @@ int FileSystem::addInformationToFile()
 		return(2);
 
 	AddFile = getRecord(FileName);
-	if ((AddFile.fileType) == "")					//!!!!!!!в дескрипторе число блоков сделал интом!!!!!!
+	if ((AddFile.descriptorType) == "0010000000000000")					//!!!!!!!в дескрипторе число блоков сделал интом!!!!!!
 		return(1);
 	RecordNumber=getRecordNumber(FileName);
 	NextRecordNumber=RecordNumber+1;
 	NextFile=getRecord(NextRecordNumber);
 	
 	
-	if ((toInt(AddFile.firstBlockNumber) + AddFile.blockCount + InformationCount / 512) > (toInt(NextFile.firstBlockNumber)))
+	if (((toInt(AddFile.firstBlockNumber) + AddFile.blockCount + InformationCount) / 512) > (toInt(NextFile.firstBlockNumber)))
 	{
 		//LastFile=AddFile;
 		//LastFile.blockCount+=InformationCount;

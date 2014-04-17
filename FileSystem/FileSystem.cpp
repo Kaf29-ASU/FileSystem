@@ -124,14 +124,16 @@ FileDescriptor FileSystem::getRecord(int number)
 			{
 				result.descriptorType=b.getString((n)*128,16);
 				result.fileName=b.getString((n)*128+16,48);
-				result.fileType=b.getString((n)*128+64,32);
+				result.fileType=b.getString((n)*128+64,16);
+				result.firstBlockNumber=b.getString(80+n*128,16);
 				result.blockCount=b.getInt((n)*128+96,16);
 				result.creationDate=b.getString((n)*128+112,16);
 				return result;
 			}else{
 				result.descriptorType=b.getString((n-1-3)*128,16);
 				result.fileName=b.getString(16+(n-1-3)*128,48);
-				result.fileType=b.getString(64+(n-1-3)*128,32);
+				result.fileType=b.getString(64+(n-1-3)*128,16);
+				result.firstBlockNumber=b.getString(80+(n-1-3)*128,16);
 				result.blockCount=b.getInt(96+(n-1-3)*128,16);
 				result.creationDate=b.getString(112+(n-1-3)*128,16);
 				return result;
@@ -154,7 +156,8 @@ FileDescriptor FileSystem::getRecord(string name)
 			{
 				result.descriptorType=b.getString(0,16);
 				result.fileName=b.getString(16,48);
-				result.fileType=b.getString(64,32);
+				result.fileType=b.getString(64,16);
+				result.firstBlockNumber=b.getString(80,16);
 				result.blockCount=b.getInt(96,16);
 				result.creationDate=b.getString(112,16);
 				return result;
@@ -165,7 +168,8 @@ FileDescriptor FileSystem::getRecord(string name)
 			{
 				result.descriptorType=b.getString(m*128,16);
 				result.fileName=b.getString(16+m*128,48);
-				result.fileType=b.getString(64+m*128,32);
+				result.fileType=b.getString(64+m*128,16);
+				result.firstBlockNumber=b.getString(80,16);
 				result.blockCount=b.getInt(96+m*128,16);
 				result.creationDate=b.getString(112+m*128,16);
 				return result;
@@ -220,19 +224,21 @@ FileDescriptor FileSystem::getNextRecord(string name)
 			a = readBlock(i + 6);
 			result.descriptorType = a.getString(128, 16);
 			result.fileName = a.getString(16 + 128, 48);
-			result.fileType = a.getString(64 + 128, 32);
+			result.fileType = a.getString(64 + 128, 16);
+			result.firstBlockNumber=a.getString(80+128,16);
 			result.blockCount = a.getInt(96 + 128, 16);
 			result.creationDate = a.getString(112 + 128, 16);
 			return result;
 		}
-		for (int m = 1; m <= 3; m++)
+		for (int m = 1; m <= 3; m++)																		//corrected
 		{
 			if (b.getString(16 + m * 128, name.length()) == name)
 			{
 				a = readBlock(16 + m * 128);
 				result.descriptorType = a.getString((m + 1) * 128, 16);
 				result.fileName = a.getString(16 + (m + 1) * 128, 48);
-				result.fileType = a.getString(64 + (m + 1) * 128, 32);
+				result.fileType = a.getString(64 + (m + 1) * 128, 16);
+				result.firstBlockNumber=a.getString(80+(m+1)*128,16);
 				result.blockCount = a.getInt(96 + (m + 1) * 128, 16);
 				result.creationDate = a.getString(112 + (m + 1) * 128, 16);
 				return result;
@@ -293,6 +299,7 @@ int FileSystem::writeRecord(FileDescriptor input,int place)
 				b.InsertString((n)*128,input.descriptorType);
 				b.InsertString((n)*128+16,input.fileName);
 				b.InsertString((n)*128+64,input.fileType);
+				b.InsertString((n)*128+80,input.firstBlockNumber);
 				b.InsertString((n)*128+96,toString(input.blockCount,16));
 				b.InsertString((n)*128+112,input.creationDate);
 				writeBlock(b,i+6);
@@ -301,6 +308,7 @@ int FileSystem::writeRecord(FileDescriptor input,int place)
 				b.InsertString((n-1-3)*128,input.descriptorType);
 				b.InsertString((n-1-3)*128+16,input.fileName);
 				b.InsertString((n-1-3)*128+64,input.fileType);
+				b.InsertString((n-1-3)*128+80,input.firstBlockNumber);
 				b.InsertString((n-1-3)*128+96,toString(input.blockCount,16));
 				b.InsertString((n-1-3)*128+112,input.creationDate);
 				writeBlock(b,i+6);
@@ -344,6 +352,7 @@ int FileSystem::writeRecord(FileDescriptor input)
 				b.InsertString(0,input.descriptorType);
 				b.InsertString(16,input.fileName);
 				b.InsertString(64,input.fileType);
+				b.InsertString(80,input.firstBlockNumber);
 				b.InsertString(96,toString(input.blockCount,16));
 				b.InsertString(112,input.creationDate);
 				writeBlock(b,i+6);
@@ -355,6 +364,7 @@ int FileSystem::writeRecord(FileDescriptor input)
 				b.InsertString(m*128,input.descriptorType);
 				b.InsertString(m*128+16,input.fileName);
 				b.InsertString(m*128+64,input.fileType);
+				b.InsertString(m*128+80,input.firstBlockNumber);
 				b.InsertString(m*128+96,toString(input.blockCount,16));
 				b.InsertString(m*128+112,input.creationDate);
 				writeBlock(b,i+6);

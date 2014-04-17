@@ -58,28 +58,30 @@ int main(int argc, char **argv)
 			}}
 
 	setlocale(LC_ALL, "Russian"); 
-	FileSystemMonitor f1;
-	//FileSystem f;
-	f1.workCycle();
+	//FileSystemMonitor f1;
+	FileSystem f;
+	//f1.workCycle();
 	
 	//Block r;
 	//r.Clean();
 	int y;
 	//string p=r.getString(0,4);
-	//f.createFile("4");
+	f.createFile("4");
 	//f.toInt("00010");
-	//f.openFile("4");
-	//f.format("23","tom","otherString","last");
+	f.openFile("4");
+	f.format("23","tom","otherString","last");
 	FileDescriptor d;
 	FileDescriptor d1;
-	d.blockCount=7;
+	d.blockCount=9;
 	d.descriptorType="222";
-	d.fileName="232323";
+	d.fileName="name";
 	//for(int i=0;i<10;i++)
-	//f.writeRecord(d);
+	f.writeRecord(d);
 	d.blockCount=123;
 	d.descriptorType="abccvc";
 	d.fileName="ascaxcx";
+	//int a=f.addInformationToFile();
+	//cout<<a;
 	//f.writeRecord(d,7);
 	//d1=f.getRecord(f.getRecordNumber("232323"));
 	//y=f.getRecordNumber("232323");
