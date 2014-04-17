@@ -2,7 +2,7 @@
 #include "FileSystemMonitor.h"
 //#include <gtest\gtest.h>
 #include <gtest\gtest.h>
-//#include 
+#include <iomanip>
 
 
 
@@ -58,28 +58,28 @@ int main(int argc, char **argv)
 			}}
 
 	setlocale(LC_ALL, "Russian"); 
-	//FileSystemMonitor f1;
+	FileSystemMonitor f1;
 	FileSystem f;
-	//f1.workCycle();
+	f1.workCycle();
 	
 	//Block r;
 	//r.Clean();
-	int y;
+	//int y;
 	//string p=r.getString(0,4);
-	f.createFile("4");
+	f.createFile("4-1");
 	//f.toInt("00010");
-	f.openFile("4");
+	f.openFile("4-1");
 	f.format("23","tom","otherString","last");
-	FileDescriptor d;
-	FileDescriptor d1;
-	d.blockCount=9;
-	d.descriptorType="222";
-	d.fileName="name";
+	//FileDescriptor d;
+	//FileDescriptor d1;
+	//d.blockCount=9;
+	//d.descriptorType="222";
+	//d.fileName="name";
 	//for(int i=0;i<10;i++)
-	f.writeRecord(d);
-	d.blockCount=123;
-	d.descriptorType="abccvc";
-	d.fileName="ascaxcx";
+	//f.writeRecord(d);
+	//d.blockCount=123;
+	//d.descriptorType="abccvc";
+	//d.fileName="ascaxcx";
 	//int a=f.addInformationToFile();
 	//cout<<a;
 	//f.writeRecord(d,7);
@@ -89,10 +89,11 @@ int main(int argc, char **argv)
 	//f.writeBlock(r,6);
 
 //	y=f.findRecord('5');
-	char c;
+	//char c;
 	//f.memory.seekg(y);
 	//c=f.memory.get();
 //	f.writeBlock(r,6);
 //	r=f.readBlock(6);
 		
+	//system("pause");
 	}
