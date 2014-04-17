@@ -8,10 +8,10 @@ int FileSystem::addInformationToFile()
 	int resultCode = 1;
 	int lenCritical = 48;
 	int CntCritical = 2 ^ 9;
-	int BlockNf, SegmNf, BlockNs, SegmNs; //Номер блока , номер сегмента
+	//int BlockNf, SegmNf, BlockNs, SegmNs; //Номер блока , номер сегмента
 	FileDescriptor AddFile;
 	FileDescriptor NextFile;
-	FileDescriptor LastFile;
+	//FileDescriptor LastFile;
 	int ResultCount;
 	int freeSpace; //кол-во свободных блоков перед следующим файлом
 	int RecordNumber,NextRecordNumber; //Номер изменяемой записи, номер следующей записи
@@ -26,7 +26,7 @@ int FileSystem::addInformationToFile()
 	cout << "Введите кол-во добавляемой информации" << endl;
 	cin >> InformationCount;
 	if (InformationCount > CntCritical)//Проверка ввода кол-ва информации 
-		return(1);
+		return(2);
 
 	AddFile = getRecord(FileName);
 	if ((AddFile.fileType) == "")					//!!!!!!!в дескрипторе число блоков сделал интом!!!!!!
@@ -35,22 +35,25 @@ int FileSystem::addInformationToFile()
 	NextRecordNumber=RecordNumber+1;
 	NextFile=getRecord(NextRecordNumber);
 	
-	//AddFile.blockCount=(AddFile.blockCount+InformationCount); //Увеличим кол-во инф. в файле
+	
 	if ((toInt(AddFile.firstBlockNumber) + AddFile.blockCount + InformationCount / 512) > (toInt(NextFile.firstBlockNumber)))
 	{
-		LastFile=AddFile;
-		LastFile.blockCount+=InformationCount;
+		//LastFile=AddFile;
+		//LastFile.blockCount+=InformationCount;
+		AddFile.blockCount+=InformationCount;
 		for(i=217;((getRecord(i).fileType)=="");i--)
-		LastFile.firstBlockNumber=toString((toInt(getRecord(i).firstBlockNumber)+getRecord(i).blockCount+1),8);
+		//LastFile.firstBlockNumber=toString((toInt(getRecord(i).firstBlockNumber)+getRecord(i).blockCount+1),8);
+		AddFile.firstBlockNumber=toString((toInt(getRecord(i).firstBlockNumber)+getRecord(i).blockCount+1),8);
 		deleteRecord(FileName);
-		writeRecord(LastFile);
+		//writeRecord(LastFile);
+		writeRecord(AddFile);
 		resultCode=0;
 	}
 	else 
 	{
-		//getRecord(FileName).blockCount+=InformationCount;
 		AddFile.blockCount=(AddFile.blockCount+InformationCount);
-
+		deleteRecord(FileName);
+		writeRecord(AddFile,RecordNumber);
 		resultCode=0;
 	}
 	return(resultCode);
