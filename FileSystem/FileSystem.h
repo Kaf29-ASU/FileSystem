@@ -9,8 +9,8 @@ private:
 public:
 	fstream memory;
 	void createFile(string);			//открытие существующего физического файла или создание нового
-	void openFile(string);
-	int format(string,string,string,string); //форматирование файловой системы
+	void openFile(string);		
+	int format(string version, string tomName, string userName, string systemName); //форматирование файловой системы
 	Block readBlock(int);			//считывание блока, заданного номером
 	void writeBlock(Block,int);		//запись блока в заданную позицию файла
 	FileDescriptor getRecord(string);  //извлечение описателя файла по имени
@@ -34,3 +34,5 @@ public:
 	FileDescriptor getRecord(int);
 	int getRecordNumber(string);
 };
+
+

@@ -83,5 +83,8 @@
     <ClCompile Include="writeVolumeLabelAndOwner.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
+    <ClCompile Include="testFileSystemFormat.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

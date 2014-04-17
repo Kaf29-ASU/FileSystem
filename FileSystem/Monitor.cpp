@@ -2,7 +2,10 @@
 
 
 
-int main()
+
+/*
+
+int main1()
 {
 	setlocale(LC_ALL, "Russian"); 
 	FileSystemMonitor f1;
@@ -42,3 +45,4 @@ int main()
 	
 	
 };
+*/

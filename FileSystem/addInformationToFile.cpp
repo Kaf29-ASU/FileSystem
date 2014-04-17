@@ -8,12 +8,14 @@ int FileSystem::addInformationToFile()
 	int resultCode = 1;
 	int lenCritical = 48;
 	int CntCritical = 2 ^ 9;
-	int BlockNf, SegmNf, BlockNs, SegmNs; //Номер блока , номер сегмента
+	//int BlockNf, SegmNf, BlockNs, SegmNs; //Номер блока , номер сегмента
 	FileDescriptor AddFile;
 	FileDescriptor NextFile;
-	FileDescriptor LastFile;
+	//FileDescriptor LastFile;
 	int ResultCount;
 	int freeSpace; //кол-во свободных блоков перед следующим файлом
+	int RecordNumber,NextRecordNumber; //Номер изменяемой записи, номер следующей записи
+	int i; //Счетчик
 
 	//Собствено функция
 	cout << "Введите имя файла" << endl;
@@ -24,23 +26,36 @@ int FileSystem::addInformationToFile()
 	cout << "Введите кол-во добавляемой информации" << endl;
 	cin >> InformationCount;
 	if (InformationCount > CntCritical)//Проверка ввода кол-ва информации 
-		return(1);
+		return(2);
 
 	AddFile = getRecord(FileName);
 	if ((AddFile.fileType) == "")					//!!!!!!!в дескрипторе число блоков сделал интом!!!!!!
 		return(1);
-	NextFile = getNextRecord(FileName);
-	//LastFile=getLastFile();
-	AddFile.blockCount=(AddFile.blockCount+InformationCount); //Увеличим кол-во инф. в файле
+	RecordNumber=getRecordNumber(FileName);
+	NextRecordNumber=RecordNumber+1;
+	NextFile=getRecord(NextRecordNumber);
+	
+	
 	if ((toInt(AddFile.firstBlockNumber) + AddFile.blockCount + InformationCount / 512) > (toInt(NextFile.firstBlockNumber)))
-	{//AddFile.firstBlockNumber=FindLastFi
-	}	
+	{
+		//LastFile=AddFile;
+		//LastFile.blockCount+=InformationCount;
+		AddFile.blockCount+=InformationCount;
+		for(i=217;((getRecord(i).fileType)=="");i--)
+		//LastFile.firstBlockNumber=toString((toInt(getRecord(i).firstBlockNumber)+getRecord(i).blockCount+1),8);
+		AddFile.firstBlockNumber=toString((toInt(getRecord(i).firstBlockNumber)+getRecord(i).blockCount+1),8);
+		deleteRecord(FileName);
+		//writeRecord(LastFile);
+		writeRecord(AddFile);
+		resultCode=0;
+	}
+	else 
+	{
+		AddFile.blockCount=(AddFile.blockCount+InformationCount);
+		deleteRecord(FileName);
+		writeRecord(AddFile,RecordNumber);
+		resultCode=0;
+	}
 	return(resultCode);
 }
 
-//{
-//	int resultCode=0;
-//
-//	return(resultCode);
-//
-//}
