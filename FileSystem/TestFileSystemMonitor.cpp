@@ -11,8 +11,8 @@ public:
 	void SetUp()	// инициализация тестируемого класса
 	{
 		f1=new FileSystemMonitor;
-		f1->fileSystem.createFile("3");
-		f1->fileSystem.openFile("3");
+		f1->fileSystem.createFile("testMonitor");
+		f1->fileSystem.openFile("testMonitor");
 	}
 	FileSystemMonitor *f1;
 };
