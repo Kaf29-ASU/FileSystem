@@ -72,6 +72,7 @@ int main(int argc, char **argv)
 	f.format("23","tom","otherString","last");
 	FileDescriptor d;
 	FileDescriptor d1;
+	d.firstBlockNumber=f.toString(20,16);
 	d.blockCount=9;
 	d.descriptorType="222";
 	d.fileName="name";
