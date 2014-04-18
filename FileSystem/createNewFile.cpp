@@ -57,10 +57,11 @@ int number=0;
 		{
 			FileDescriptor fileDescriptor;
 			fileDescriptor.descriptorType="00000000002000";
-			fileDescriptor.fileName=fileName;
-			fileDescriptor.fileType=fileType;
+			fileDescriptor.fileName=fileName+"|";
+			fileDescriptor.fileType=fileType+"|";
 			fileDescriptor.blockCount=fileSize;
 			fileDescriptor.creationDate=creationDate;
+			fileDescriptor.firstBlockNumber=current.firstBlockNumber;
 			writeRecord(fileDescriptor ,i);
 			resultCode=0;
 			return(resultCode);
@@ -69,8 +70,8 @@ int number=0;
 		{
 			FileDescriptor fileDescriptor;
 			fileDescriptor.descriptorType="00000000002000";
-			fileDescriptor.fileName=fileName;
-			fileDescriptor.fileType=fileType;
+			fileDescriptor.fileName=fileName+"|";
+			fileDescriptor.fileType=fileType+"|";
 			fileDescriptor.blockCount=fileSize;
 			fileDescriptor.creationDate=creationDate;
 			writeRecord(fileDescriptor);
