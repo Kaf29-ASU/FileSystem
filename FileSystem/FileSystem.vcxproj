@@ -94,6 +94,7 @@
     <ClCompile Include="showContentInAlphavit.cpp" />
     <ClCompile Include="showInformation.cpp" />
     <ClCompile Include="testFileSystemFormat.cpp" />
+    <ClCompile Include="TestFileSystemMonitor.cpp" />
     <ClCompile Include="writeVolumeLabelAndOwner.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
