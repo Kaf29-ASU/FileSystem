@@ -1,14 +1,4 @@
-#include "FileSystem.h"
 
-int FileSystem::showContentInAlphavit()
-{
-	int resultCode=0;
-
-	return(resultCode);
-
-}
-
-/*
 #include "FileSystem.h"
 
 int FileSystem::showContentInAlphavit()
@@ -43,4 +33,3 @@ int FileSystem::showContentInAlphavit()
 
 	return (resultCode);
 }
-*/
