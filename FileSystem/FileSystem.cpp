@@ -314,8 +314,6 @@ int FileSystem::writeRecord(FileDescriptor input,int place)
 				writeBlock(b,i+6);
 				return 0;}
 		
-	
-	return 1;     //нет свободного места-ошибка 1
 }
 
 

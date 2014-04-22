@@ -1,6 +1,8 @@
 #include "Segment.h"
 #include "FileDescriptor.h"
 #include <ctime>
+#include <gtest\gtest.h>
+#include <iomanip>
 
 class FileSystem
 {
@@ -23,7 +25,7 @@ public:
 	int createNewFile();
 	int showInformation();
 	int deleteFile();
-	int reNameFile();
+	int reNameFile(string lastName, string newName);
 	int addInformationToFile();
 	int changeFileType();
 	int compressionOfFileSystem();

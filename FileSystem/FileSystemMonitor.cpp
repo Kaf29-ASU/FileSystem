@@ -115,7 +115,7 @@ void FileSystemMonitor::deleteFile()
 void FileSystemMonitor::reNameFile()
 {
 	int resultCode;
-	resultCode=fileSystem.reNameFile();
+	//resultCode=fileSystem.reNameFile();
 	switch(resultCode)
 	{
 	case(0):

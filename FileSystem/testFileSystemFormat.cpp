@@ -58,9 +58,9 @@ int main(int argc, char **argv)
 			}}
 
 	setlocale(LC_ALL, "Russian"); 
-	FileSystemMonitor f1;
+	//FileSystemMonitor f1;
 	FileSystem f;
-	f1.workCycle();
+	//f1.workCycle();
 	
 	//Block r;
 	//r.Clean();
@@ -81,8 +81,12 @@ int main(int argc, char **argv)
 	//d.blockCount=9;
 	//d.descriptorType="222";
 	//d.fileName="name";
-	for(int i=0;i<10;i++)
+	//for(int i=0;i<10;i++)
+	f.writeRecord(d,5);
+	d.fileName="nooome";
 	f.writeRecord(d);
+	//f.reNameFile("notExistName","name");
+
 	//d.blockCount=123;
 	//d.descriptorType="abccvc";
 	//d.fileName="ascaxcx";
