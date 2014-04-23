@@ -55,10 +55,12 @@ int main(int argc, char **argv)
 				RUN_ALL_TESTS();
 				getch();
 				return 0;
-			}}
+			};
+
+		}
 
 	setlocale(LC_ALL, "Russian"); 
-	//FileSystemMonitor f1;
+/*	//FileSystemMonitor f1;
 	FileSystem f;
 	//f1.workCycle();
 	
@@ -104,6 +106,7 @@ int main(int argc, char **argv)
 	//c=f.memory.get();
 //	f.writeBlock(r,6);
 //	r=f.readBlock(6);
+*/
 		
 	//system("pause");
 	}

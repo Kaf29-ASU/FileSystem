@@ -116,7 +116,7 @@ void FileSystemMonitor::reNameFile()
 {
 	int resultCode;
 	//resultCode=fileSystem.reNameFile();
-	switch(resultCode)
+/*	switch(resultCode)
 	{
 	case(0):
 			cout<<"успешное завершение"<<endl;
@@ -131,6 +131,7 @@ void FileSystemMonitor::reNameFile()
 			cout<<"недопустимая длина имени файла"<<endl;
 			break;
 	}
+*/
 }
 
 void FileSystemMonitor::addInformationToFile()
