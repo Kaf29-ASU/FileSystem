@@ -1,5 +1,14 @@
 #include "FileSystem.h"
 
+string& FileSystem::nameTrim(string& input)
+{
+	int n;
+	n=input.find_first_of("|");
+	input=input.substr(0,n);
+	return input;
+}
+
+
 string FileSystem::toString(int n, int length)
 {
 			string tmp;
@@ -128,6 +137,8 @@ FileDescriptor FileSystem::getRecord(int number)
 				result.firstBlockNumber=b.getString(80+n*128,16);
 				result.blockCount=b.getInt((n)*128+96,16);
 				result.creationDate=b.getString((n)*128+112,16);
+				result.fileName=nameTrim(result.fileName);
+				result.fileType=nameTrim(result.fileType);
 				return result;
 			}else{
 				result.descriptorType=b.getString((n-1-3)*128,16);
@@ -136,11 +147,15 @@ FileDescriptor FileSystem::getRecord(int number)
 				result.firstBlockNumber=b.getString(80+(n-1-3)*128,16);
 				result.blockCount=b.getInt(96+(n-1-3)*128,16);
 				result.creationDate=b.getString(112+(n-1-3)*128,16);
+				result.fileName=nameTrim(result.fileName);
+				result.fileType=nameTrim(result.fileType);
 				return result;
 			}
 		
 
 				result.descriptorType.erase();  //если не найден, то тип описателя пустой
+				result.fileName=nameTrim(result.fileName);
+				result.fileType=nameTrim(result.fileType);
 				return result;
 }
 
@@ -160,6 +175,8 @@ FileDescriptor FileSystem::getRecord(string name)
 				result.firstBlockNumber=b.getString(80,16);
 				result.blockCount=b.getInt(96,16);
 				result.creationDate=b.getString(112,16);
+				result.fileName=nameTrim(result.fileName);
+				result.fileType=nameTrim(result.fileType);
 				return result;
 			}
 		for (int m=1;m<=3;m++)
@@ -172,12 +189,16 @@ FileDescriptor FileSystem::getRecord(string name)
 				result.firstBlockNumber=b.getString(80,16);
 				result.blockCount=b.getInt(96+m*128,16);
 				result.creationDate=b.getString(112+m*128,16);
+				result.fileName=nameTrim(result.fileName);
+				result.fileType=nameTrim(result.fileType);
 				return result;
 			}
 		}
 	}
 
 				result.descriptorType.erase();  //если не найден, то тип описателя пустой
+				result.fileName=nameTrim(result.fileName);
+				result.fileType=nameTrim(result.fileType);
 				return result;
 		
 }
@@ -211,46 +232,6 @@ int FileSystem::getRecordNumber(string name)
 }
 
 
-FileDescriptor FileSystem::getNextRecord(string name)
-{
-	Block b;
-	Block a;
-	FileDescriptor result;
-	for (int i = 0; i<62; i++)
-	{
-		b = readBlock(i + 6);
-		if ((b.getString(16, name.length()) == name) && !(i % 2 == 0))
-		{
-			a = readBlock(i + 6);
-			result.descriptorType = a.getString(128, 16);
-			result.fileName = a.getString(16 + 128, 48);
-			result.fileType = a.getString(64 + 128, 16);
-			result.firstBlockNumber=a.getString(80+128,16);
-			result.blockCount = a.getInt(96 + 128, 16);
-			result.creationDate = a.getString(112 + 128, 16);
-			return result;
-		}
-		for (int m = 1; m <= 3; m++)																		//corrected
-		{
-			if (b.getString(16 + m * 128, name.length()) == name)
-			{
-				a = readBlock(16 + m * 128);
-				result.descriptorType = a.getString((m + 1) * 128, 16);
-				result.fileName = a.getString(16 + (m + 1) * 128, 48);
-				result.fileType = a.getString(64 + (m + 1) * 128, 16);
-				result.firstBlockNumber=a.getString(80+(m+1)*128,16);
-				result.blockCount = a.getInt(96 + (m + 1) * 128, 16);
-				result.creationDate = a.getString(112 + (m + 1) * 128, 16);
-				return result;
-			}
-		}
-	}
-
-	result.descriptorType.erase();  //если не найден, то тип описателя пустой
-	return result;
-
-}
-
 int FileSystem::deleteRecord(string name)
 {
 	Block b;
@@ -281,6 +262,8 @@ int FileSystem::deleteRecord(string name)
 int FileSystem::writeRecord(FileDescriptor input,int place)
 {
 	Block b;
+	input.fileName=input.fileName+"|";
+	input.fileType=input.fileType+"|";
 	b.Clean();
 		int k;
 		if (place%7==0) k=place/7; else k=1+(place/7);   //номер сегмента куда идет запись
@@ -319,7 +302,8 @@ int FileSystem::writeRecord(FileDescriptor input,int place)
 
 int FileSystem::writeRecord(FileDescriptor input)
 {
-
+	input.fileName=input.fileName+"|";
+	input.fileType=input.fileType+"|";
 	Block b;
 	for (int i=0;i<62;i++)
 	{

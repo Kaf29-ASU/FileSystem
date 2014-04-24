@@ -17,7 +17,6 @@ public:
 	Block readBlock(int);			//считывание блока, заданного номером
 	void writeBlock(Block,int);		//запись блока в заданную позицию файла
 	FileDescriptor getRecord(string);  //извлечение описателя файла по имени
-	FileDescriptor getNextRecord(string);
 	int writeRecord(FileDescriptor);    //сохранение записи о файле в конец 
 	int deleteRecord(string);		//удаление записи о файле	
 	void closeFileSystem();			
@@ -36,6 +35,7 @@ public:
 	int writeRecord(FileDescriptor,int);
 	FileDescriptor getRecord(int);
 	int getRecordNumber(string);
+	string& nameTrim(string& input);
 };
 
 

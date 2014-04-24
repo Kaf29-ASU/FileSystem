@@ -60,10 +60,13 @@ int main(int argc, char **argv)
 
 		}
 
+
+	string s("123");
 	
 	//FileSystemMonitor f1;
 	//FileSystemMonitor f1;
 	FileSystem f;
+	s=f.nameTrim(s);
 	//f1.workCycle();
 	
 	//Block r;
