@@ -53,10 +53,10 @@ int number=0;
 	
 		current=getRecord(i);
 		nextDescr=getRecord(i+1);
-		if(((toInt(nextDescr.firstBlockNumber)-toInt(current.firstBlockNumber))>=fileSize)&&(current.descriptorType=="0000000000000000"))
+		if(((toInt(nextDescr.firstBlockNumber)-toInt(current.firstBlockNumber))>=fileSize)&&((current.descriptorType=="0001000000000000")||(current.descriptorType=="0000000000000000")))
 		{
 			FileDescriptor fileDescriptor;
-			fileDescriptor.descriptorType="00000000002000";
+			fileDescriptor.descriptorType="002000000000000";
 			fileDescriptor.fileName=fileName;
 			fileDescriptor.fileType=fileType;
 			fileDescriptor.blockCount=fileSize;
@@ -69,7 +69,7 @@ int number=0;
 		if(i==217)
 		{
 			FileDescriptor fileDescriptor;
-			fileDescriptor.descriptorType="00000000002000";
+			fileDescriptor.descriptorType="00200000000000";
 			fileDescriptor.fileName=fileName;
 			fileDescriptor.fileType=fileType;
 			fileDescriptor.blockCount=fileSize;
