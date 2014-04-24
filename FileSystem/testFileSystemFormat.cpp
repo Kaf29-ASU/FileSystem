@@ -45,6 +45,7 @@ TEST_F(TestFileSystem, incorrectFormatSystemName)		//проверка кода ошибки при не
 
 int main(int argc, char **argv)
 {
+	setlocale(LC_ALL, "Russian"); 
 
 		for (int i=1;i<argc;i++)
 		{
@@ -59,7 +60,7 @@ int main(int argc, char **argv)
 
 		}
 
-	setlocale(LC_ALL, "Russian"); 
+	
 	//FileSystemMonitor f1;
 	//FileSystemMonitor f1;
 	FileSystem f;

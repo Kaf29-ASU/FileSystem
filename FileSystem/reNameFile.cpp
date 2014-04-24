@@ -42,24 +42,39 @@ public:
 	}
 	FileSystem *f;
 };
-/*
+
 
 TEST_F(TestReNameFile, correctRename)		//успешное переимнование
 {
-	ASSERT_EQ(f->reNameFile("name","notExistName"),0);
+	stringstream s;
+	s<<"name"<<endl;
+	s<<"notExistName"<<endl;
+	//cout.rdbuf(s.rdbuf());
+	cin.rdbuf(s.rdbuf());
+	ASSERT_EQ(f->reNameFile(),0);
 };
 
 TEST_F(TestReNameFile, incorrectName)		//некооректное имя
 {
-	ASSERT_EQ(f->reNameFile("name","ToLargeNameToLargeNameToLargeNameToLargeNameToLargeNameToLargeNameToLargeName"),1);
+	stringstream s;
+	s<<"name"<<endl;
+	s<<"ToLargeNameToLargeNameToLargeNameToLargeNameToLargeNameToLargeNameToLargeName"<<endl;
+	//cout.rdbuf(s.rdbuf());
+	cin.rdbuf(s.rdbuf());
+	ASSERT_EQ(f->reNameFile(),1);
 }
 
 TEST_F(TestReNameFile, notExistFile)		//несуществующий файл
 {
-	ASSERT_EQ(f->reNameFile("notExistName","notExistName"),2);
+	stringstream s;
+	s<<"notExistName"<<endl;
+	s<<"notExistName"<<endl;
+	ASSERT_EQ(f->reNameFile(),2);
 };
 TEST_F(TestReNameFile, nameBeenUsed)		//существует файл с новым именем
 {
-	ASSERT_EQ(f->reNameFile("name","ExistName"),3);
+	stringstream s;
+	s<<"name"<<endl;
+	s<<"ExistName"<<endl;
+	ASSERT_EQ(f->reNameFile(),3);
 };
-*/
