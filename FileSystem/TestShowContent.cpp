@@ -8,7 +8,7 @@
 
 
 
-
+/*
 class TestFileSystemMonitor : public ::testing::Test {
 public:
 	void SetUp()	// инициализация тестируемого класса
@@ -41,3 +41,4 @@ TEST_F(TestFileSystemMonitor, showContent)
 	
 	EXPECT_EQ(ss,s1);
 }
+*/
