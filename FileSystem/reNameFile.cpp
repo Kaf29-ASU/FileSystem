@@ -1,8 +1,14 @@
 #include "FileSystem.h"
 
-int FileSystem::reNameFile(string lastName, string newName)   //если некорректное им€-1; если нет файла с заданным старым именем файла-2; если файл с новым именем уже существует-3
+int FileSystem::reNameFile()   //если некорректное им€-1; если нет файла с заданным старым именем файла-2; если файл с новым именем уже существует-3
 {
-	if ((lastName.length()>48)||(newName.length()>48)) return 1;
+	string lastName;
+	cout<<"¬ведите им€ файла"<<endl;
+	cin>>lastName;
+	string newName;
+	cout<<"¬ведите новое им€ файла"<<endl;
+	cin>>newName;
+	if ((lastName.length()>47)||(newName.length()>47)) return 1;
 	if (getRecordNumber(newName)!=0) return 3;
 	int fileNumber;
 	fileNumber=getRecordNumber(lastName);
@@ -36,7 +42,7 @@ public:
 	}
 	FileSystem *f;
 };
-
+/*
 
 TEST_F(TestReNameFile, correctRename)		//успешное переимнование
 {
@@ -56,3 +62,4 @@ TEST_F(TestReNameFile, nameBeenUsed)		//существует файл с новым именем
 {
 	ASSERT_EQ(f->reNameFile("name","ExistName"),3);
 };
+*/

@@ -2,7 +2,7 @@
 #include "FileDescriptor.h"
 #include <ctime>
 #include <gtest\gtest.h>
-#include <iomanip>
+#include <ioma
 
 class FileSystem
 {
@@ -25,7 +25,7 @@ public:
 	int createNewFile();
 	int showInformation();
 	int deleteFile();
-	int reNameFile(string lastName, string newName);
+	int reNameFile();
 	int addInformationToFile();
 	int changeFileType();
 	int compressionOfFileSystem();
