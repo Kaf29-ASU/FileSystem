@@ -60,9 +60,9 @@ int main(int argc, char **argv)
 		}
 
 	setlocale(LC_ALL, "Russian"); 
-/*	//FileSystemMonitor f1;
+	FileSystemMonitor f1;
 	FileSystem f;
-	//f1.workCycle();
+	f1.workCycle();
 	
 	//Block r;
 	//r.Clean();
@@ -106,7 +106,7 @@ int main(int argc, char **argv)
 	//c=f.memory.get();
 //	f.writeBlock(r,6);
 //	r=f.readBlock(6);
-*/
+
 		
 	//system("pause");
 	}
