@@ -185,10 +185,10 @@ void FileSystemMonitor::changeFileType()
 	}
 }
 
-void FileSystemMonitor::writeVolumeLabelAndOwner()
+void FileSystemMonitor::writeVolumeLabelAndOwner(string VolumeLabel, string Owner)
 {
 	int resultCode;
-	resultCode=fileSystem.writeVolumeLabelAndOwner();
+	resultCode=fileSystem.writeVolumeLabelAndOwner(VolumeLabel, Owner);
 	switch(resultCode)
 	{
 	case(0):
@@ -200,7 +200,6 @@ void FileSystemMonitor::writeVolumeLabelAndOwner()
 	case(2):
 			cout<<"недопустимая метка тома"<<endl;
 			break;
-
 	}
 }
 
@@ -308,7 +307,15 @@ void FileSystemMonitor::workCycle()
 			{ changeFileType(); resultCode=1;};
 
 		if((comand.compare("10")==0)||(comand.compare("fsparam")==0))
-			{ writeVolumeLabelAndOwner(); resultCode=1;};
+			{ 
+				string VolumeLabel; 
+				string Owner;
+				cout<<"Vvedite metku toma"<<endl;
+				cin>>VolumeLabel;
+				cout<<"Vvedit imya vladeltsa"<<endl;
+				cin>>Owner;
+				resultCode=fileSystem.writeVolumeLabelAndOwner(VolumeLabel, Owner);
+			};
 
 		if((comand.compare("11")==0)||(comand.compare("help")==0))
 			{ showHelp(); resultCode=1; };
