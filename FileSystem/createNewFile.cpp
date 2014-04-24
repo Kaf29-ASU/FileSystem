@@ -6,7 +6,7 @@ int FileSystem::createNewFile()
 	string fileName;
 	cout<<"¬ведите им€ файла не превышающее 48 символа"<<endl;
 	cin>>fileName;
-		if(fileName.length()>48)
+		if(fileName.length()>47)
 		{
 			resultCode=2222;
 			return(resultCode);
@@ -20,7 +20,7 @@ int FileSystem::createNewFile()
 	string fileType;
 	cout<<"¬ведите тип файла не превышающий 32 сиволов"<<endl;
 	cin>>fileType;
-	if(fileType.length()>16)
+	if(fileType.length()>15)
 	{
 		resultCode=2222;
 		return(resultCode);
@@ -57,8 +57,8 @@ int number=0;
 		{
 			FileDescriptor fileDescriptor;
 			fileDescriptor.descriptorType="00000000002000";
-			fileDescriptor.fileName=fileName+"|";
-			fileDescriptor.fileType=fileType+"|";
+			fileDescriptor.fileName=fileName;
+			fileDescriptor.fileType=fileType;
 			fileDescriptor.blockCount=fileSize;
 			fileDescriptor.creationDate=creationDate;
 			fileDescriptor.firstBlockNumber=current.firstBlockNumber;
@@ -70,11 +70,11 @@ int number=0;
 		{
 			FileDescriptor fileDescriptor;
 			fileDescriptor.descriptorType="00000000002000";
-			fileDescriptor.fileName=fileName+"|";
-			fileDescriptor.fileType=fileType+"|";
+			fileDescriptor.fileName=fileName;
+			fileDescriptor.fileType=fileType;
 			fileDescriptor.blockCount=fileSize;
 			fileDescriptor.creationDate=creationDate;
-			writeRecord(fileDescriptor);
+			writeRecord(fileDescriptor,i);
 			resultCode=0;
 			return(resultCode);
 		}
