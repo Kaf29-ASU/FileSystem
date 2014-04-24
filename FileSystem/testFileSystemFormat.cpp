@@ -61,6 +61,7 @@ int main(int argc, char **argv)
 
 	setlocale(LC_ALL, "Russian"); 
 	//FileSystemMonitor f1;
+	//FileSystemMonitor f1;
 	FileSystem f;
 	//f1.workCycle();
 	
