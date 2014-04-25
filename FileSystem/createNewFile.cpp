@@ -48,6 +48,7 @@ int FileSystem::createNewFile()
 FileDescriptor current;
 FileDescriptor nextDescr;
 int number=0;
+
 	for(int i=1;i<218;++i)
 	{
 	
@@ -91,3 +92,70 @@ if(resultCode==100)
 	
 return(resultCode);
 }
+
+
+
+class TestCreateFile : public ::testing::Test {
+public:
+	void SetUp()	// инициализация тестируемого класса
+	{
+		f=new FileSystem;
+		f->createFile("testCreate");
+		f->openFile("testCreate");
+		f->format("23","tom","otherString","last");
+
+		FileDescriptor d;
+		FileDescriptor d1;
+		d.firstBlockNumber=f->toString(20,16);
+		d.blockCount=9;
+		d.descriptorType="002000";
+		d.fileName="name";
+		f->writeRecord(d,5);
+		d.fileName="ExistName";
+		f->writeRecord(d);
+	}
+	FileSystem *f;
+};
+
+
+TEST_F(TestCreateFile, nameUsed)		//такой файл существует создание
+{
+	stringstream s;
+	s<<"name"<<endl;
+	s<<"notExistName"<<endl;
+	s<<1000<<endl;
+	//cout.rdbuf(s.rdbuf());
+	cin.rdbuf(s.rdbuf());
+	ASSERT_EQ(f->createNewFile(),222);
+};
+
+TEST_F(TestCreateFile, correctCreate)		//корректные входные
+{
+	stringstream s;
+	s<<"NewName"<<endl;
+	s<<"type"<<endl;
+	s<<1000<<endl;
+	//cout.rdbuf(s.rdbuf());
+	cin.rdbuf(s.rdbuf());
+	ASSERT_EQ(f->createNewFile(),0);
+}
+
+
+TEST_F(TestCreateFile, inCorrect)		//некорректные входные
+{
+	stringstream s;
+	s<<"notExistNamenotExistNamenotExistNamenotExistNamenotExistNamenotExistNamenotExistName"<<endl;
+	s<<"notExistNamenotExistNamenotExistNameммnotExistName"<<endl;
+	s<<1000<<endl;
+	ASSERT_EQ(f->createNewFile(),2222);
+};
+
+/*
+TEST_F(TestCreateFile, nameBeenUsed)		//существует файл с новым именем
+{
+	stringstream s;
+	s<<"name"<<endl;
+	s<<"ExistName"<<endl;
+	ASSERT_EQ(f->reNameFile(),3);
+};
+*/
