@@ -273,28 +273,32 @@ int FileSystem::writeRecord(FileDescriptor input,int place)
 		if (n==0) n=7;    //номер записи в сегменте
 		
 		int i;
-		if (n<=3) i=k*2-2; else i=k*2-1;		//номер считываемого блока относительно начала каталога
+		if (n<=3) i=k*2-1; else i=k*2;		//номер считываемого блока относительно начала каталога
 
-
+		b=readBlock(i+5);
 		
-		if (i%2==0)
+		if (i%2!=0)
 			{
+				for (int k=0;k<128;k++)
+					b.InsertString((n)*128+k,"0");
 				b.InsertString((n)*128,input.descriptorType);
 				b.InsertString((n)*128+16,input.fileName);
 				b.InsertString((n)*128+64,input.fileType);
 				b.InsertString((n)*128+80,input.firstBlockNumber);
 				b.InsertString((n)*128+96,toString(input.blockCount,16));
 				b.InsertString((n)*128+112,input.creationDate);
-				writeBlock(b,i+6);
+				writeBlock(b,i+5);
 				return 0;
 			}else{
+				for (int k=0;k<128;k++)
+					b.InsertString((n-1-3)*128+k,"0");
 				b.InsertString((n-1-3)*128,input.descriptorType);
 				b.InsertString((n-1-3)*128+16,input.fileName);
 				b.InsertString((n-1-3)*128+64,input.fileType);
 				b.InsertString((n-1-3)*128+80,input.firstBlockNumber);
 				b.InsertString((n-1-3)*128+96,toString(input.blockCount,16));
 				b.InsertString((n-1-3)*128+112,input.creationDate);
-				writeBlock(b,i+6);
+				writeBlock(b,i+5);
 				return 0;}
 		
 }

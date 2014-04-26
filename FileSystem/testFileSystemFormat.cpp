@@ -88,12 +88,14 @@ int main(int argc, char **argv)
 	//d.blockCount=9;
 	//d.descriptorType="222";
 	//d.fileName="name";
-	for(int i=0;i<10;i++)
+	for(int i=0;i<20;i++)
 	f.writeRecord(d);
 	d.fileName="nooome";
 	d.descriptorType="001000000";
-	f.writeRecord(d,4);
+	f.writeRecord(d,9);
 	f.showInformation();
+
+	f.compressionOfFileSystem();
   //  f.reNameFile();
 
 	//d.blockCount=123;
