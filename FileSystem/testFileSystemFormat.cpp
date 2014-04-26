@@ -88,11 +88,13 @@ int main(int argc, char **argv)
 	//d.blockCount=9;
 	//d.descriptorType="222";
 	//d.fileName="name";
-	//for(int i=0;i<10;i++)
-	f.writeRecord(d,5);
-	d.fileName="nooome";
+	for(int i=0;i<10;i++)
 	f.writeRecord(d);
-    f.reNameFile();
+	d.fileName="nooome";
+	d.descriptorType="001000000";
+	f.writeRecord(d,4);
+	f.showInformation();
+  //  f.reNameFile();
 
 	//d.blockCount=123;
 	//d.descriptorType="abccvc";
