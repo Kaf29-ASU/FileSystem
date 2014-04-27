@@ -66,8 +66,26 @@ int main(int argc, char **argv)
 	//FileSystemMonitor f1;
 	//FileSystemMonitor f1;
 	FileSystem f;
+	FileSystem ff; 
 	s=f.nameTrim(s);
 	//f1.workCycle();
+	//f.createFile("testCreate2");
+	//f.openFile("testCreate2");
+	//f.format("23","tom","otherString","last");
+	/*
+	for(int i=1;i<218;++i)
+		{
+		FileDescriptor d;
+		//d.firstBlockNumber=f->toString(20,16);
+		d.blockCount=9;
+		d.descriptorType="002000";
+		d.fileName="0000";
+		//f->writeRecord(d,5);
+		//d.fileName="ExistName";
+		f.writeRecord(d);
+		};
+			
+*/
 	
 	//Block r;
 	//r.Clean();

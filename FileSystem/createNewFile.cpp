@@ -1,5 +1,6 @@
 #include "FileSystem.h"
 
+
 int FileSystem::createNewFile()
 {
 	int resultCode=100;
@@ -49,15 +50,16 @@ FileDescriptor current;
 FileDescriptor nextDescr;
 int number=0;
 
-	for(int i=1;i<218;++i)
+	for(int i=1;i<=218;++i)
 	{
 	
 		current=getRecord(i);
 		nextDescr=getRecord(i+1);
-		if(((toInt(nextDescr.firstBlockNumber)-toInt(current.firstBlockNumber))>=fileSize)&&((current.descriptorType=="0001000000000000")||(current.descriptorType=="0000000000000000")))
+		
+		if(((toInt(nextDescr.firstBlockNumber)-toInt(current.firstBlockNumber))>=fileSize)&&((current.descriptorType=="001000")||(current.descriptorType=="000000")))
 		{
 			FileDescriptor fileDescriptor;
-			fileDescriptor.descriptorType="002000000000000";
+			fileDescriptor.descriptorType="002000";
 			fileDescriptor.fileName=fileName;
 			fileDescriptor.fileType=fileType;
 			fileDescriptor.blockCount=fileSize;
@@ -67,10 +69,11 @@ int number=0;
 			resultCode=0;
 			return(resultCode);
 		}
-		if(i==217)
+		
+		if((i==218)&&(getRecord(217).descriptorType=="0000000000000000"))
 		{
 			FileDescriptor fileDescriptor;
-			fileDescriptor.descriptorType="00200000000000";
+			fileDescriptor.descriptorType="002000";
 			fileDescriptor.fileName=fileName;
 			fileDescriptor.fileType=fileType;
 			fileDescriptor.blockCount=fileSize;
@@ -79,6 +82,7 @@ int number=0;
 			resultCode=0;
 			return(resultCode);
 		}
+		
 	}
 
 if(resultCode==100)
@@ -132,7 +136,7 @@ TEST_F(TestCreateFile, nameUsed)		//такой файл существует создание
 TEST_F(TestCreateFile, correctCreate)		//корректные входные
 {
 	stringstream s;
-	s<<"NewName"<<endl;
+	s<<"New"<<endl;
 	s<<"type"<<endl;
 	s<<1000<<endl;
 	//cout.rdbuf(s.rdbuf());
@@ -150,12 +154,41 @@ TEST_F(TestCreateFile, inCorrect)		//некорректные входные
 	ASSERT_EQ(f->createNewFile(),2222);
 };
 
-/*
-TEST_F(TestCreateFile, nameBeenUsed)		//существует файл с новым именем
-{
-	stringstream s;
-	s<<"name"<<endl;
-	s<<"ExistName"<<endl;
-	ASSERT_EQ(f->reNameFile(),3);
+class TestCreateFile2 : public ::testing::Test {
+public:
+	void SetUp()	// инициализация тестируемого класса
+	{
+		f=new FileSystem;
+		//f->createFile("testCreate2");
+		f->openFile("testCreate2");
+		//f->format("23","tom","otherString","last");
+
+		FileDescriptor d;
+		
+		
+	}
+	FileSystem *f;
 };
-*/
+
+
+TEST_F(TestCreateFile2, notEnoughPlace)	
+{
+	/*
+	for(int i=1;i<218;++i)
+		{
+		FileDescriptor d;
+		//d.firstBlockNumber=f->toString(20,16);
+		d.blockCount=9;
+		d.descriptorType="002000";
+		d.fileName="0000";
+		//f->writeRecord(d,5);
+		//d.fileName="ExistName";
+		f->writeRecord(d);
+		};
+		*/
+	stringstream s;
+	s<<"1111"<<endl;
+	s<<"111"<<endl;
+	s<<"111"<<endl;
+	ASSERT_EQ(f->createNewFile(),22);
+};

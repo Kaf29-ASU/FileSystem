@@ -1,6 +1,7 @@
 #include "FileSystemMonitor.h"
 
 
+
 void FileSystemMonitor::startWorking()
 {
 	cout<<"Доброго времени суток! Вас приветствует модель файловой системы ос реального времени. "<<endl;
@@ -327,7 +328,6 @@ void FileSystemMonitor::workCycle()
 
 	};
 }
-
 
 
 

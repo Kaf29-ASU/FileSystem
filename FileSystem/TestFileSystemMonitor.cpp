@@ -23,20 +23,6 @@ public:
 	
 };
 
-TEST_F(TestFileSystemMonitor, correctDelete)
-{
-	stringstream oss;
-	std::cout.rdbuf(oss.rdbuf());
-	//std::cout<<"test";
-	//return;
-	//std::stringstream s;
-	 //#define cout s;
-	f1->deleteFile();
-	string ss;
-	ss = oss.str();
-	string s1="";
-	EXPECT_EQ(ss,s1);
-}
 
 /*
 TEST_F(TestFileSystemMonitor, correctRename)
@@ -97,3 +83,5 @@ TEST_F(TestFileSystemMonitor, correctWorkCycle)
 	EXPECT_EQ(ss,s1);
 }
 */
+
+
