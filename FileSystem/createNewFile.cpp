@@ -70,6 +70,7 @@ for(int i=1;i<=218;++i)
 			return(resultCode);
 		}
 		
+
 		if(current.descriptorType=="0010000000000000")
 		{
 			if(nextDescr.descriptorType=="0000000000000000")
