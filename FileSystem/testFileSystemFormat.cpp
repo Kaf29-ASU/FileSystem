@@ -68,11 +68,11 @@ int main(int argc, char **argv)
 	string s("123");
 	
 	//FileSystemMonitor f1;
-	//FileSystemMonitor f1;
-	FileSystem f;
-	FileSystem ff; 
-	s=f.nameTrim(s);
-	//f1.workCycle();
+	FileSystemMonitor f1;
+	//FileSystem f;
+	//FileSystem ff; 
+	//s=f.nameTrim(s);
+	f1.workCycle();
 	//f.createFile("testCreate2");
 	//f.openFile("testCreate2");
 	//f.format("23","tom","otherString","last");
@@ -90,7 +90,7 @@ int main(int argc, char **argv)
 		};
 			
 */
-	
+	/*
 	//Block r;
 	//r.Clean();
 	//int y;
@@ -139,5 +139,5 @@ int main(int argc, char **argv)
 //	r=f.readBlock(6);
 
 		
-	//system("pause");
+	//system("pause");*/
 	}
