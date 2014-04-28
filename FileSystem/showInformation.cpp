@@ -14,17 +14,30 @@ int FileSystem::showInformation()
 			{
 				cout<<num<<")       "<<toInt(b.getString(80,16))<<"            "<<toInt(b.getString(96,16))<<endl;
 				sumBlocks+=toInt(b.getString(96,16));
+				num++;
 			}
 		for (int m=1;m<=3;m++)
 		if (b.getString(m*128,16)=="0010000000000000")
 			{
 				cout<<num<<")       "<<toInt(b.getString(m*128+80,16))<<"            "<<toInt(b.getString(m*128+96,16))<<endl;
 				sumBlocks+=toInt(b.getString(m*128+96,16));
+				num++;
 			}
 		
 	}
-	if (sumBlocks==0) {cout<<"нет свободных областей"<<endl ; return 1;}
-	cout<<"Всего свободных блоков: "<<sumBlocks<<endl;
+	if (sumBlocks==0) {cout<<"нет свободных областей"<<endl ;}
+
+	else {cout<<"Всего свободных блоков: "<<sumBlocks<<endl;}
+	FileDescriptor d;
+	int m=0;
+	for (int i=1;i<=217;i++)
+	{
+		d=getRecord(i);
+
+		if ((d.descriptorType=="0000000000000000")||(d.descriptorType=="0010000000000000"))
+			m++;
+	}
+	cout<<"Всего файлов: "<<(217-m)<<endl;
 	return 0;
 }
 
@@ -46,6 +59,8 @@ public:
 		d.fileName="name";
 		for(int i=0;i<10;i++)
 			f->writeRecord(d);
+		//d.descriptorType="001000";
+		//f->writeRecord(d);
 	}
 	FileSystem *f;
 };

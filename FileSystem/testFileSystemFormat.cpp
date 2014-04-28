@@ -112,8 +112,9 @@ int main(int argc, char **argv)
 	d.descriptorType="001000000";
 	f.writeRecord(d,9);
 	f.showInformation();
-
 	f.compressionOfFileSystem();
+	f.showInformation();
+	getch();
   //  f.reNameFile();
 
 	//d.blockCount=123;

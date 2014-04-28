@@ -33,8 +33,6 @@ public:
 		f1->openFile("testDelete");
 		f1->format("23","tom","otherString","last");
 		FileDescriptor d;
-		FileDescriptor d1;
-		
 		d.blockCount=9;
 		d.descriptorType="002000";
 		d.fileName="name";
