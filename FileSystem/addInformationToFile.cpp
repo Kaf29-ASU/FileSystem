@@ -129,5 +129,5 @@ TEST_F(TestAdd2, noPlace)
 	s<<"10000"<<endl;
 	//cout.rdbuf(s.rdbuf());
 	cin.rdbuf(s.rdbuf());
-	ASSERT_FALSE(f->addInformationToFile()==2);
+	ASSERT_EQ(f->addInformationToFile(),2);
 }
