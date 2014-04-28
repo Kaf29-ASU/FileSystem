@@ -186,10 +186,10 @@ void FileSystemMonitor::changeFileType()
 	}
 }
 
-void FileSystemMonitor::writeVolumeLabelAndOwner(string VolumeLabel, string Owner)
+void FileSystemMonitor::writeVolumeLabelAndOwner()
 {
 	int resultCode;
-	resultCode=fileSystem.writeVolumeLabelAndOwner(VolumeLabel, Owner);
+	resultCode=fileSystem.writeVolumeLabelAndOwner();
 	switch(resultCode)
 	{
 	case(0):
@@ -309,13 +309,8 @@ void FileSystemMonitor::workCycle()
 
 		if((comand.compare("10")==0)||(comand.compare("fsparam")==0))
 			{ 
-				string VolumeLabel; 
-				string Owner;
-				cout<<"Vvedite metku toma"<<endl;
-				cin>>VolumeLabel;
-				cout<<"Vvedit imya vladeltsa"<<endl;
-				cin>>Owner;
-				resultCode=fileSystem.writeVolumeLabelAndOwner(VolumeLabel, Owner);
+				resultCode=1;
+				writeVolumeLabelAndOwner();
 			};
 
 		if((comand.compare("11")==0)||(comand.compare("help")==0))

@@ -15,7 +15,7 @@ public:
 	void addInformationToFile();
 	void compressionOfFileSystem();
 	void changeFileType();
-	void writeVolumeLabelAndOwner(string VolumeLabel, string Owner);
+	void writeVolumeLabelAndOwner();
 	void showTableInAlphavit();
 	void formatFileSystem();
 

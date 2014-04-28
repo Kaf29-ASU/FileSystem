@@ -29,7 +29,7 @@ public:
 	int addInformationToFile();
 	int changeFileType();
 	int compressionOfFileSystem();
-	int writeVolumeLabelAndOwner(string,string);
+	int writeVolumeLabelAndOwner();
 	string toString(int,int);
 	int toInt(string);
 	int writeRecord(FileDescriptor,int);
