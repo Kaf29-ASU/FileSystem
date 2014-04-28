@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 		}
 
 
-	string s("123");
+	//string s("123");
 	
 	//FileSystemMonitor f1;
 	//FileSystemMonitor f1;
@@ -76,20 +76,20 @@ int main(int argc, char **argv)
 	//f.createFile("testCreate2");
 	//f.openFile("testCreate2");
 	//f.format("23","tom","otherString","last");
-	/*
+	f.openFile("testCreate2");
 	for(int i=1;i<218;++i)
 		{
 		FileDescriptor d;
 		//d.firstBlockNumber=f->toString(20,16);
 		d.blockCount=9;
 		d.descriptorType="002000";
-		d.fileName="0000";
-		//f->writeRecord(d,5);
+		d.fileName="test"+f.toString(i,1);
+		f.writeRecord(d,i);
 		//d.fileName="ExistName";
-		f.writeRecord(d);
+		//f.writeRecord(d);
 		};
-			
-*/
+		
+
 	
 	//Block r;
 	//r.Clean();
@@ -120,7 +120,7 @@ int main(int argc, char **argv)
 	//f.compressionOfFileSystem();
 	//f.showInformation();
 	//getch();
-
+	/*
 	f.openFile("4-1");
 	f.format("23","tom","otherString","last");
 	FileDescriptor d;
@@ -167,5 +167,5 @@ int main(int argc, char **argv)
 	//system("pause");
 	FileSystemMonitor f1;
 	f1.workCycle();
-
+*/
 	}
