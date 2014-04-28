@@ -13,75 +13,42 @@ class TestFileSystemMonitor : public ::testing::Test {
 public:
 	void SetUp()	// инициализация тестируемого класса
 	{
-		f1=new FileSystemMonitor;
-		f1->fileSystem.createFile("testMonitor");
-		f1->fileSystem.openFile("testMonitor");
-		
+		//f1=new FileSystemMonitor;
+		f1.fileSystem.createFile("testMonitor");
+		f1.fileSystem.openFile("testMonitor");
+		f1.fileSystem.format("23","tom","otherString","last");
 	}
-	FileSystemMonitor *f1;
+	FileSystemMonitor f1;
 	
 	
 };
 
 
-/*
-TEST_F(TestFileSystemMonitor, correctRename)
-{
-	stringstream oss;
-	std::cout.rdbuf(oss.rdbuf());
-	//std::cout<<"test";
-	//return;
-	//std::stringstream s;
-	 //#define cout s;
-	f1->reNameFile();
-	string ss;
-	ss = oss.str();
-	string s1="";
-	EXPECT_EQ(ss,s1);
-}
-
-
-TEST_F(TestFileSystemMonitor, correctCreateF)
-{
-	stringstream oss;
-	std::cout.rdbuf(oss.rdbuf());
-	//std::cout<<"test";
-	//return;
-	//std::stringstream s;
-	 //#define cout s;
-	f1->createNewFile();
-	string ss;
-	ss = oss.str();
-	string s1="";
-	EXPECT_EQ(ss,s1);
-}
-
-TEST_F(TestFileSystemMonitor, correctChangeT)
-{
-	stringstream oss;
-	std::cout.rdbuf(oss.rdbuf());
-	//std::cout<<"test";
-	//return;
-	//std::stringstream s;
-	 //#define cout s;
-	f1->changeFileType();
-	string ss;
-	ss = oss.str();
-	string s1="";
-	EXPECT_EQ(ss,s1);
-}
 
 TEST_F(TestFileSystemMonitor, correctWorkCycle)
 {
 	stringstream oss;
-	std::cout.rdbuf(oss.rdbuf());
+	streambuf *buff;
+	//cout.rdbuf(oss.rdbuf());
+	f1.workCycle();
+	buff=oss.rdbuf();
 
-	f1->workCycle();
+	oss<<"1"<<endl;
+	oss<<"testMonitor"<<endl;
+
+	oss<<"1"<<endl;
 	string ss;
-	ss = oss.str();
-	string s1="";
+	ss=oss.str();
+	oss<<"0";
+	cin.rdbuf(buff);
+	oss.clear();
+	//cout.rdbuf(buff);
+	cout.rdbuf(oss.rdbuf());
+	string s1=("успешное завершение");
+	
+	
 	EXPECT_EQ(ss,s1);
 }
-*/
+
 
 
