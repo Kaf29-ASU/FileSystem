@@ -65,9 +65,9 @@ int main(int argc, char **argv)
 	
 	//FileSystemMonitor f1;
 	//FileSystemMonitor f1;
-	FileSystem f;
-	FileSystem ff; 
-	s=f.nameTrim(s);
+	//FileSystem f;
+	//FileSystem ff; 
+	//s=f.nameTrim(s);
 	//f1.workCycle();
 	//f.createFile("testCreate2");
 	//f.openFile("testCreate2");
@@ -91,30 +91,30 @@ int main(int argc, char **argv)
 	//r.Clean();
 	//int y;
 	//string p=r.getString(0,4);
-	f.createFile("4-1");
+	//f.createFile("4-1");
 	//f.toInt("00010");
-	f.openFile("4-1");
-	f.format("23","tom","otherString","last");
-	FileDescriptor d;
-	FileDescriptor d1;
-	d.firstBlockNumber=f.toString(20,16);
-	d.blockCount=9;
-	d.descriptorType="222";
-	d.fileName="name";
+	//f.openFile("4-1");
+	//f.format("23","tom","otherString","last");
+	//FileDescriptor d;
+	//FileDescriptor d1;
+	//d.firstBlockNumber=f.toString(20,16);
+	//d.blockCount=9;
+	//d.descriptorType="222";
+	//d.fileName="name";
 	//FileDescriptor d;
 	//FileDescriptor d1;
 	//d.blockCount=9;
 	//d.descriptorType="222";
 	//d.fileName="name";
-	for(int i=0;i<20;i++)
-	f.writeRecord(d);
-	d.fileName="nooome";
-	d.descriptorType="001000000";
-	f.writeRecord(d,9);
-	f.showInformation();
-	f.compressionOfFileSystem();
-	f.showInformation();
-	getch();
+	//for(int i=0;i<20;i++)
+	//f.writeRecord(d);
+	//d.fileName="nooome";
+	//d.descriptorType="001000000";
+	//f.writeRecord(d,9);
+	//f.showInformation();
+	//f.compressionOfFileSystem();
+	//f.showInformation();
+	//getch();
   //  f.reNameFile();
 
 	//d.blockCount=123;
@@ -137,4 +137,7 @@ int main(int argc, char **argv)
 
 		
 	//system("pause");
+	FileSystemMonitor f1;
+	f1.workCycle();
+
 	}
