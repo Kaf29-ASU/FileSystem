@@ -20,6 +20,7 @@ int FileSystem::compressionOfFileSystem()
 					*current=*next;
 					if(current->descriptorType!="0000000000000000")
 						current->firstBlockNumber=toString(toInt(last->firstBlockNumber)+last->blockCount,16);
+					if(i==1) current->firstBlockNumber=toString(0,16);
 					writeRecord(*current,m);
 					if (m!=216) *next=getRecord(m+2);
 				}else{

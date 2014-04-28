@@ -7,7 +7,7 @@ int FileSystem::addInformationToFile()
 	int CountLength=8;
 	int resultCode = 1;
 	int lenCritical = 48;
-	int CntCritical = 2 ^ 9;
+	int CntCritical = 2 ^ 16;
 	//int BlockNf, SegmNf, BlockNs, SegmNs; //Номер блока , номер сегмента
 	FileDescriptor AddFile;
 	FileDescriptor NextFile;
@@ -36,7 +36,7 @@ int FileSystem::addInformationToFile()
 	NextFile=getRecord(NextRecordNumber);
 	
 	
-	if (((toInt(AddFile.firstBlockNumber) + AddFile.blockCount + InformationCount) / 512) > (toInt(NextFile.firstBlockNumber)))
+	if ((toInt(AddFile.firstBlockNumber) + AddFile.blockCount + InformationCount) > (toInt(NextFile.firstBlockNumber)))
 	{
 		//LastFile=AddFile;
 		//LastFile.blockCount+=InformationCount;
@@ -68,15 +68,28 @@ public:
 		f1->openFile("testAdd");
 		f1->format("23","tom","otherString","last");
 		FileDescriptor d;
-		d.blockCount=9;
+		d.blockCount=15;
 		d.descriptorType="002000";
-		d.fileName="name";
-		f1->writeRecord(d,5);
-		d.fileName="ExistName";
-		f1->writeRecord(d);
-		
+		for (int i=0;i<20;i++)
+			{d.fileName="file"+(f1->toString(i+1,4));
+			f1->writeRecord(d);}
+		f1->compressionOfFileSystem();
+		d=f1->getRecord(7);
+		d.blockCount=10;
+		f1->writeRecord(d,7);
 	}
 	FileSystem *f1;
 	
 	
 };
+
+
+TEST_F(TestAdd, correctAdd)
+{
+	stringstream s;
+	s<<"file1"<<endl;
+	s<<"4"<<endl;
+	//cout.rdbuf(s.rdbuf());
+	cin.rdbuf(s.rdbuf());
+	ASSERT_EQ(f1->addInformationToFile(),0);
+}

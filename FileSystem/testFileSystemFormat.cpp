@@ -45,6 +45,10 @@ TEST_F(TestFileSystem, incorrectFormatSystemName)		//проверка кода ошибки при не
 
 int main(int argc, char **argv)
 {
+
+	//argv[1]="runtest";
+	//argc=2;
+	
 	setlocale(LC_ALL, "Russian"); 
 
 		for (int i=1;i<argc;i++)
@@ -98,22 +102,21 @@ int main(int argc, char **argv)
 	FileDescriptor d;
 	FileDescriptor d1;
 	d.firstBlockNumber=f.toString(20,16);
-	d.blockCount=9;
-	d.descriptorType="222";
-	d.fileName="name";
-	//FileDescriptor d;
-	//FileDescriptor d1;
-	//d.blockCount=9;
-	//d.descriptorType="222";
-	//d.fileName="name";
-	for(int i=0;i<20;i++)
-	f.writeRecord(d);
-	d.fileName="nooome";
-	d.descriptorType="001000000";
-	f.writeRecord(d,9);
-	f.showInformation();
+	d.blockCount=15;
+	d.descriptorType="002000";
+	for (int i=0;i<9;i++)
+		{d.fileName="file"+(f.toString(i+1,1));
+	f.writeRecord(d);}
+	d=f.getRecord(1);
+	d.descriptorType="001000";
+	f.writeRecord(d,1);
 	f.compressionOfFileSystem();
-	f.showInformation();
+	d=f.getRecord(6);
+	d.blockCount=10;
+	f.writeRecord(d,6);
+	d=f.getRecord("file7");
+	int e;
+	e=f.addInformationToFile();
 	getch();
   //  f.reNameFile();
 

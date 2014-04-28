@@ -56,7 +56,7 @@ int number=0;
 		current=getRecord(i);
 		nextDescr=getRecord(i+1);
 		
-		if(((toInt(nextDescr.firstBlockNumber)-toInt(current.firstBlockNumber))>=fileSize)&&((current.descriptorType=="001000")||(current.descriptorType=="000000")))
+		if(((toInt(nextDescr.firstBlockNumber)-toInt(current.firstBlockNumber))>=fileSize)&&((current.descriptorType=="0000000000000000")||(current.descriptorType=="0000000000000000")))
 		{
 			FileDescriptor fileDescriptor;
 			fileDescriptor.descriptorType="002000";
