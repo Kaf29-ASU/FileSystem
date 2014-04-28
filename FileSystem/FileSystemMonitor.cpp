@@ -255,6 +255,7 @@ void FileSystemMonitor::workCycle()
 	cout<<"Если вы хотите создать новый файл введите 2"<<endl;
 	int startType;
 	cin>>startType;
+	
 	while((startType!=1)&&(startType!=2))
 	{
 		cout<<"Некорректный ввод. Введите 1 или 2"<<endl;
@@ -262,7 +263,7 @@ void FileSystemMonitor::workCycle()
 	};
 	if(startType==2)
 	{
-		createNewFileSystem();
+		this->createNewFileSystem();
 	
 	};
 	if(startType==1)
@@ -270,7 +271,7 @@ void FileSystemMonitor::workCycle()
 		cout<<"Введите имя существующего файла "<<endl;
 		string fileSystemName;
 		cin>>fileSystemName;
-		fileSystem.openFile(fileSystemName);
+		this->fileSystem.openFile(fileSystemName);
 	};
 	for(;;)
 	{
@@ -278,46 +279,46 @@ void FileSystemMonitor::workCycle()
 		string comand=showMenu();
 		int resultCode=0;
 		if((comand.compare("0")==0)||(comand.compare("exit")==0))
-			{fileSystem.closeFileSystem(); break;};
+			{this->fileSystem.closeFileSystem(); break;};
 
 		if((comand.compare("1")==0)||(comand.compare("content")==0))
-			{ showTableOfContents(); resultCode=1;};
+			{ this->showTableOfContents(); resultCode=1;};
 
 		if((comand.compare("2")==0)||(comand.compare("contenta")==0))
-			{ showTableInAlphavit(); resultCode=1;};
-
+			{ this->showTableInAlphavit(); resultCode=1;};
+		 1222222229;
 		if((comand.compare("3")==0)||(comand.compare("showinfo")==0))
-			{ showInformation(); resultCode=1;};
+			{ this->showInformation(); resultCode=1;};
 
 		if((comand.compare("4")==0)||(comand.compare("createf")==0))
-			{ createNewFile(); resultCode=1;};
+			{ this->createNewFile(); resultCode=1;};
 
 		if((comand.compare("5")==0)||(comand.compare("delf")==0))
-			{ deleteFile(); resultCode=1;};
+			{ this->deleteFile(); resultCode=1;};
 
 		if((comand.compare("6")==0)||(comand.compare("renamef")==0))
-			{ reNameFile(); resultCode=1;};
+			{ this->reNameFile(); resultCode=1;};
 
 		if((comand.compare("7")==0)||(comand.compare("addinfo")==0))
-			{ addInformationToFile(); resultCode=1;};
+			{ this->addInformationToFile(); resultCode=1;};
 
 		if((comand.compare("8")==0)||(comand.compare("compress")==0))
-			{ compressionOfFileSystem(); resultCode=1;};
+			{ this->compressionOfFileSystem(); resultCode=1;};
 
 		if((comand.compare("9")==0)||(comand.compare("chft")==0))
-			{ changeFileType(); resultCode=1;};
+			{ this->changeFileType(); resultCode=1;};
 
 		if((comand.compare("10")==0)||(comand.compare("fsparam")==0))
 			{ 
 				resultCode=1;
-				writeVolumeLabelAndOwner();
+				this->writeVolumeLabelAndOwner();
 			};
 
 		if((comand.compare("11")==0)||(comand.compare("help")==0))
-			{ showHelp(); resultCode=1; };
+			{ this->showHelp(); resultCode=1; };
 
 		if((comand.compare("12")==0)||(comand.compare("createfs")==0))
-		{ formatFileSystem(); resultCode=1;};
+		{ this->formatFileSystem(); resultCode=1;};
 
 		if(!resultCode) cout<<"Некорректное входное значение. Повторите ввод"<<endl;
 

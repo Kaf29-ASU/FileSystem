@@ -57,5 +57,26 @@ int FileSystem::addInformationToFile()
 		resultCode=0;
 	}
 	return(resultCode);
-}
+};
 
+class TestAdd : public ::testing::Test {
+public:
+	void SetUp()	// инициализация тестируемого класса
+	{
+		f1=new FileSystem;
+		f1->createFile("testAdd");
+		f1->openFile("testAdd");
+		f1->format("23","tom","otherString","last");
+		FileDescriptor d;
+		d.blockCount=9;
+		d.descriptorType="002000";
+		d.fileName="name";
+		f1->writeRecord(d,5);
+		d.fileName="ExistName";
+		f1->writeRecord(d);
+		
+	}
+	FileSystem *f1;
+	
+	
+};
