@@ -20,7 +20,7 @@ int FileSystem::addInformationToFile()
 	//Собствено функция
 	cout << "Введите имя файла" << endl;
 	cin >> FileName;
-	if (FileName.length() > lenCritical)//Проверка ввода имени
+	if (getRecordNumber(FileName)==0)//Проверка ввода имени
 		return(1);
 
 	cout << "Введите кол-во добавляемой информации" << endl;
@@ -87,9 +87,47 @@ public:
 TEST_F(TestAdd, correctAdd)
 {
 	stringstream s;
-	s<<"file1"<<endl;
+	s<<"file"<<endl;
 	s<<"4"<<endl;
 	//cout.rdbuf(s.rdbuf());
 	cin.rdbuf(s.rdbuf());
 	ASSERT_EQ(f1->addInformationToFile(),0);
+}
+
+
+TEST_F(TestAdd, noFile)
+{
+	stringstream s;
+	s<<"notExist"<<endl;
+	s<<"4"<<endl;
+	//cout.rdbuf(s.rdbuf());
+	cin.rdbuf(s.rdbuf());
+	ASSERT_EQ(f1->addInformationToFile(),1);
+}
+
+
+class TestAdd2 : public ::testing::Test {
+public:
+	void SetUp()	// инициализация тестируемого класса
+	{
+		f=new FileSystem;
+		//f->createFile("testCreate2");
+		f->openFile("testCreate2");
+		//f->format("23","tom","otherString","last");
+
+		FileDescriptor d;
+		
+		
+	}
+	FileSystem *f;
+};
+
+TEST_F(TestAdd2, noPlace)
+{
+	stringstream s;
+	s<<"test0001"<<endl;
+	s<<"10000"<<endl;
+	//cout.rdbuf(s.rdbuf());
+	cin.rdbuf(s.rdbuf());
+	ASSERT_FALSE(f->addInformationToFile()==2);
 }

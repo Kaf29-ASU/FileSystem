@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 		}
 
 
-	string s("123");
+	//string s("123");
 	
 	//FileSystemMonitor f1;
 	FileSystemMonitor f1;
@@ -73,30 +73,65 @@ int main(int argc, char **argv)
 	//FileSystem ff; 
 	//s=f.nameTrim(s);
 	f1.workCycle();
+	//FileSystemMonitor f1;
+	//FileSystem f;
+	//FileSystem ff; 
+	//s=f.nameTrim(s);
+	//f1.workCycle();
 	//f.createFile("testCreate2");
 	//f.openFile("testCreate2");
-	//f.format("23","tom","otherString","last");
-	/*
+	/*f.format("23","tom","otherString","last");
+	f.openFile("testCreate2");
 	for(int i=1;i<218;++i)
 		{
 		FileDescriptor d;
 		//d.firstBlockNumber=f->toString(20,16);
 		d.blockCount=9;
 		d.descriptorType="002000";
-		d.fileName="0000";
-		//f->writeRecord(d,5);
+		d.fileName="test"+f.toString(i,1);
+		f.writeRecord(d,i);
 		//d.fileName="ExistName";
-		f.writeRecord(d);
+		//f.writeRecord(d);
 		};
+
 			
 */
 	/*
+
+		
+
+	
+
 	//Block r;
 	//r.Clean();
 	//int y;
 	//string p=r.getString(0,4);
-	f.createFile("4-1");
+	//f.createFile("4-1");
 	//f.toInt("00010");
+
+	//f.openFile("4-1");
+	//f.format("23","tom","otherString","last");
+	//FileDescriptor d;
+	//FileDescriptor d1;
+	//d.firstBlockNumber=f.toString(20,16);
+	//d.blockCount=9;
+	//d.descriptorType="222";
+	//d.fileName="name";
+	//FileDescriptor d;
+	//FileDescriptor d1;
+	//d.blockCount=9;
+	//d.descriptorType="222";
+	//d.fileName="name";
+	//for(int i=0;i<20;i++)
+	//f.writeRecord(d);
+	//d.fileName="nooome";
+	//d.descriptorType="001000000";
+	//f.writeRecord(d,9);
+	//f.showInformation();
+	//f.compressionOfFileSystem();
+	//f.showInformation();
+	//getch();
+	/*
 	f.openFile("4-1");
 	f.format("23","tom","otherString","last");
 	FileDescriptor d;
@@ -117,27 +152,7 @@ int main(int argc, char **argv)
 	d=f.getRecord("file7");
 	int e;
 	e=f.addInformationToFile();
-	getch();
-  //  f.reNameFile();
+	getch();*/
 
-	//d.blockCount=123;
-	//d.descriptorType="abccvc";
-	//d.fileName="ascaxcx";
-	//int a=f.addInformationToFile();
-	//cout<<a;
-	//f.writeRecord(d,7);
-	//d1=f.getRecord(f.getRecordNumber("232323"));
-	//y=f.getRecordNumber("232323");
-	//f.deleteRecord("232323");
-	//f.writeBlock(r,6);
 
-//	y=f.findRecord('5');
-	//char c;
-	//f.memory.seekg(y);
-	//c=f.memory.get();
-//	f.writeBlock(r,6);
-//	r=f.readBlock(6);
-
-		
-	//system("pause");*/
 	}

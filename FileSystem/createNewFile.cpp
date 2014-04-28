@@ -29,6 +29,7 @@ int FileSystem::createNewFile()
 	int fileSize;
 	cout<<"¬ведите размер файла в байтах"<<endl;
 	cin>>fileSize;
+	int blockCount=(fileSize/512)+1;
 	/*
 	string fileSizeString=toString(fileSize, 16);
 	cin>>fileType;
@@ -50,19 +51,18 @@ FileDescriptor current;
 FileDescriptor nextDescr;
 int number=0;
 
-	for(int i=1;i<=218;++i)
-	{
+for(int i=1;i<=218;++i)
+{
 	
 		current=getRecord(i);
 		nextDescr=getRecord(i+1);
-		
-		if(((toInt(nextDescr.firstBlockNumber)-toInt(current.firstBlockNumber))>=fileSize)&&((current.descriptorType=="0000000000000000")||(current.descriptorType=="0000000000000000")))
+		if(((toInt(nextDescr.firstBlockNumber)-toInt(current.firstBlockNumber))>=blockCount)&&((current.descriptorType=="001000")||(current.descriptorType=="000000")))
 		{
 			FileDescriptor fileDescriptor;
-			fileDescriptor.descriptorType="002000";
+			fileDescriptor.descriptorType="0020000000000000";
 			fileDescriptor.fileName=fileName;
 			fileDescriptor.fileType=fileType;
-			fileDescriptor.blockCount=fileSize;
+			fileDescriptor.blockCount=blockCount;
 			fileDescriptor.creationDate=creationDate;
 			fileDescriptor.firstBlockNumber=current.firstBlockNumber;
 			writeRecord(fileDescriptor ,i);
@@ -70,20 +70,55 @@ int number=0;
 			return(resultCode);
 		}
 		
+
+		if(current.descriptorType=="0010000000000000")
+		{
+			if(nextDescr.descriptorType=="0000000000000000")
+			{
+			FileDescriptor fileDescriptor;
+			fileDescriptor.descriptorType="0020000000000000";
+			fileDescriptor.fileName=fileName;
+			fileDescriptor.fileType=fileType;
+			fileDescriptor.blockCount=blockCount;
+			fileDescriptor.creationDate=creationDate;
+			fileDescriptor.firstBlockNumber=current.firstBlockNumber;
+			writeRecord(fileDescriptor ,i);
+			resultCode=0;
+			return(resultCode);
+			};
+		}
+		else
+		{
+			if(current.descriptorType=="0000000000000000")
+			{
+				FileDescriptor fileDescriptor;
+			fileDescriptor.descriptorType="0020000000000000";
+			fileDescriptor.fileName=fileName;
+			fileDescriptor.fileType=fileType;
+			fileDescriptor.blockCount=blockCount;
+			fileDescriptor.creationDate=creationDate;
+			fileDescriptor.firstBlockNumber=current.firstBlockNumber;
+			writeRecord(fileDescriptor ,i);
+			resultCode=0;
+			return(resultCode);
+			}
+		};
+	
+		
 		if((i==218)&&(getRecord(217).descriptorType=="0000000000000000"))
 		{
 			FileDescriptor fileDescriptor;
 			fileDescriptor.descriptorType="002000";
 			fileDescriptor.fileName=fileName;
 			fileDescriptor.fileType=fileType;
-			fileDescriptor.blockCount=fileSize;
+			fileDescriptor.blockCount=blockCount;
 			fileDescriptor.creationDate=creationDate;
-			writeRecord(fileDescriptor,i);
+			writeRecord(fileDescriptor,i-1);
 			resultCode=0;
 			return(resultCode);
 		}
 		
-	}
+}
 
 if(resultCode==100)
 {
