@@ -30,22 +30,29 @@ TEST_F(TestFileSystemMonitor, correctWorkCycle)
 	stringstream oss;
 	//streambuf *buff;
 	//cout.rdbuf(oss.rdbuf());
-	f1->workCycle();
+	
 	cin.rdbuf(oss.rdbuf());
+	
+	stringstream scout;
+	//cout.rdbuf(scout.rdbuf());
 
 	oss<<"1"<<endl;
 	oss<<"testMonitor"<<endl;
-
 	oss<<"1"<<endl;
+	oss<<"0"<<endl;
+	cout.rdbuf(scout.rdbuf());
+	f1->workCycle();
+
+	
 	string ss;
-	ss=oss.str();
+	ss=scout.str();
 	oss<<"0";
 	//cout.rdbuf(buff);
-	cout.rdbuf(oss.rdbuf());
+	
 	string s1=("успешное завершение");
 	
 	
-	EXPECT_EQ(ss,s1);
+	ASSERT_TRUE(ss.find("успешное завершение")!=0);
 }
 
 
