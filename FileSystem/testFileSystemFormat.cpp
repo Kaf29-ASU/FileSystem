@@ -68,14 +68,19 @@ int main(int argc, char **argv)
 	//string s("123");
 	
 	//FileSystemMonitor f1;
+	FileSystemMonitor f1;
+	//FileSystem f;
+	//FileSystem ff; 
+	//s=f.nameTrim(s);
+	f1.workCycle();
 	//FileSystemMonitor f1;
-	FileSystem f;
+	//FileSystem f;
 	//FileSystem ff; 
 	//s=f.nameTrim(s);
 	//f1.workCycle();
 	//f.createFile("testCreate2");
 	//f.openFile("testCreate2");
-	//f.format("23","tom","otherString","last");
+	/*f.format("23","tom","otherString","last");
 	f.openFile("testCreate2");
 	for(int i=1;i<218;++i)
 		{
@@ -88,9 +93,15 @@ int main(int argc, char **argv)
 		//d.fileName="ExistName";
 		//f.writeRecord(d);
 		};
+
+			
+*/
+	/*
+
 		
 
 	
+
 	//Block r;
 	//r.Clean();
 	//int y;
@@ -141,31 +152,7 @@ int main(int argc, char **argv)
 	d=f.getRecord("file7");
 	int e;
 	e=f.addInformationToFile();
-	getch();
+	getch();*/
 
-  //  f.reNameFile();
 
-	//d.blockCount=123;
-	//d.descriptorType="abccvc";
-	//d.fileName="ascaxcx";
-	//int a=f.addInformationToFile();
-	//cout<<a;
-	//f.writeRecord(d,7);
-	//d1=f.getRecord(f.getRecordNumber("232323"));
-	//y=f.getRecordNumber("232323");
-	//f.deleteRecord("232323");
-	//f.writeBlock(r,6);
-
-//	y=f.findRecord('5');
-	//char c;
-	//f.memory.seekg(y);
-	//c=f.memory.get();
-//	f.writeBlock(r,6);
-//	r=f.readBlock(6);
-
-		
-	//system("pause");
-	FileSystemMonitor f1;
-	f1.workCycle();
-*/
 	}

@@ -209,7 +209,7 @@ void FileSystemMonitor::createNewFileSystem()
 	cout<<"Введите имя файла для сохранения файловой системы"<<endl;
 		string fileSystemName;
 		cin>>fileSystemName;
-		fileSystem.createFile(fileSystemName);
+		//fileSystem.createFile(fileSystemName);
 		string version;
 		cout<<"print version"<<endl;
 		cin>>version;
