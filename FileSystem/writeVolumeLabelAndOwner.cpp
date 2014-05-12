@@ -2,14 +2,14 @@
 
 int FileSystem::writeVolumeLabelAndOwner()
 {
-	cout<<"Enter Volume Label"<<endl;
+	cout<<"¬ведите метку тома"<<endl;
 	string VolName;
 	cin>>VolName;
-	if (VolName.length()>12) return 1;
-	cout<<"Enter the name of owner"<<endl;
+	if (VolName.length()>12) return 2;
+	cout<<"¬ведите им€ владельца"<<endl;
 	string Owner;
 	cin>>Owner;
-	if (Owner.length()>12) return 2; 
+	if (Owner.length()>12) return 1; 
 	Block temp_Block;
 	temp_Block.InsertString(472,VolName);
 	temp_Block.InsertString(484,Owner);
