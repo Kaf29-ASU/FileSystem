@@ -55,3 +55,31 @@ int FileSystem::compressionOfFileSystem()
 
 	return 0;
 }
+
+
+
+class TestCompression : public ::testing::Test {
+public:
+	void SetUp()	// инициализация тестируемого класса
+	{
+		f=new FileSystem;
+		f->createFile("testCompress");
+		f->openFile("testCompress");
+		f->format("a","b","c","d");
+		for (int i=1;i<18;i++)
+		{FileDescriptor d;
+		d.descriptorType="qwer";
+		d.fileName="name"+f->toString(i,2);
+		d.blockCount=6;
+		f->writeRecord(d);
+		}
+		f->deleteRecord("name04");
+	}
+	FileSystem *f;
+};
+
+
+TEST_F(TestCompression, correctCompression)	
+{
+	ASSERT_EQ(f->compressionOfFileSystem(),0);
+};
