@@ -19,8 +19,8 @@ public:
 	void showTableInAlphavit();
 	void formatFileSystem();
 
-	void startWorking();
-	string showMenu();
+	inline void startWorking();
+	inline string showMenu();
 	void workCycle();
-	void showHelp();
+	inline void showHelp();
 };
