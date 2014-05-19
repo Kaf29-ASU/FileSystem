@@ -11,6 +11,7 @@ private:
 	
 public:
 	fstream memory;
+	string fileName;
 	void createFile(string);			//открытие существующего физического файла или создание нового
 	void openFile(string);		
 	int format(string version, string tomName, string userName, string systemName); //форматирование файловой системы

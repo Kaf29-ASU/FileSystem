@@ -231,6 +231,7 @@ void FileSystemMonitor::createNewFileSystem()
 		string systemName;
 		cout<<"print systemName"<<endl;
 		cin>>systemName;
+		fileSystem.fileName=fileSystemName;
 		fileSystem.createFile(fileSystemName);
 		fileSystem.openFile(fileSystemName);
 		if (fileSystem.format(version, tomName, userName, systemName)==0) cout<<"форматирование успешно"<<endl;
@@ -253,7 +254,9 @@ void FileSystemMonitor::formatFileSystem()
 		cin>>userName;
 		string systemName;
 		cout<<"print systemName"<<endl;
-		cin>>systemName;		
+		cin>>systemName;
+		fileSystem.memory.close();
+		fileSystem.openFile(fileSystem.fileName);
 		if (fileSystem.format(version, tomName, userName, systemName)==0) cout<<"форматирование успешно"<<endl;
 		else {
 			cout<<"некорректные входные данные, повторите ввод"<<endl;
