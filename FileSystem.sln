@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FileSystemSetup", "FileSystemSetup\FileSystemSetup.vdproj", "{37955248-72F2-4CE8-B236-25A65D2FC83F}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = FileSystem.vsmdi
@@ -23,6 +25,8 @@ Global
 		{1E71F522-2D95-4B30-BF8B-2BAC22029D6A}.Debug|Win32.Build.0 = Debug|Win32
 		{1E71F522-2D95-4B30-BF8B-2BAC22029D6A}.Release|Win32.ActiveCfg = Release|Win32
 		{1E71F522-2D95-4B30-BF8B-2BAC22029D6A}.Release|Win32.Build.0 = Release|Win32
+		{37955248-72F2-4CE8-B236-25A65D2FC83F}.Debug|Win32.ActiveCfg = Debug
+		{37955248-72F2-4CE8-B236-25A65D2FC83F}.Release|Win32.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
