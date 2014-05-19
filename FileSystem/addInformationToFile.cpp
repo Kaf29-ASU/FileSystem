@@ -25,6 +25,7 @@ int FileSystem::addInformationToFile()
 
 	cout << "¬ведите кол-во добавл€емой информации" << endl;
 	cin >> InformationCount;
+	InformationCount=InformationCount/512+1;
 
 	AddFile = getRecord(FileName);
 	if ((AddFile.descriptorType) == "0010000000000000")					//!!!!!!!в дескрипторе число блоков сделал интом!!!!!!

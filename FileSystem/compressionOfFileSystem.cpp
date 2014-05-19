@@ -46,6 +46,7 @@ int FileSystem::compressionOfFileSystem()
 			next->descriptorType="0000000000000000";
 			next->firstBlockNumber="0000000000000000";
 			writeRecord(*next,217);
+			i--;
 		}
 	}
 
