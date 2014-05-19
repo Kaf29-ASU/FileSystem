@@ -47,7 +47,6 @@ void FileSystem::openFile(string fileName)
 int FileSystem::format(string version, string tomName, string userName, string systemName)
 {
 	
-	
 	if(version.length()>2||tomName.length()>12||userName.length()>12||systemName.length()>12) return 1;
 	memory.clear();
 	Block firstBlock;		//загрузочный блок
