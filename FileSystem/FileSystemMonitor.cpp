@@ -116,8 +116,8 @@ void FileSystemMonitor::deleteFile()
 void FileSystemMonitor::reNameFile()
 {
 	int resultCode;
-	//resultCode=fileSystem.reNameFile();
-/*	switch(resultCode)
+	resultCode=fileSystem.reNameFile();
+	switch(resultCode)
 	{
 	case(0):
 			cout<<"успешное завершение"<<endl;
@@ -132,7 +132,7 @@ void FileSystemMonitor::reNameFile()
 			cout<<"недопустима€ длина имени файла"<<endl;
 			break;
 	}
-*/
+
 }
 
 void FileSystemMonitor::addInformationToFile()
@@ -278,6 +278,13 @@ void FileSystemMonitor::workCycle()
 		string fileSystemName;
 		cin>>fileSystemName;
 		fileSystem.openFile(fileSystemName);
+		while(!fileSystem.memory.is_open())
+		{
+			cout<<"¬ведите им€ существующего файла "<<endl;
+			string fileSystemName;
+			cin>>fileSystemName;
+			fileSystem.openFile(fileSystemName);
+		}
 	};
 	for(;;)
 	{

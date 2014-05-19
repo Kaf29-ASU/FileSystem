@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 	argc=2;
 	
 	setlocale(LC_ALL, "Russian"); 
-
+	/*
 		for (int i=1;i<argc;i++)
 		{
 			string tmp(argv[i]);
@@ -63,7 +63,7 @@ int main(int argc, char **argv)
 			};
 
 		}
-
+		*/
 
 	//string s("123");
 	
