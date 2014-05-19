@@ -6,7 +6,7 @@ int FileSystem::showTableOfContent()
 	for(int i=1;i<218;++i)
 	{
 		FileDescriptor fileDescriptor=getRecord(i);
-		if(fileDescriptor.descriptorType!="0000000000000000")	
+		if((fileDescriptor.descriptorType!="0000000000000000")&&((fileDescriptor.descriptorType!="0010000000000000")))
 		{
 			int number=fileDescriptor.fileName.find("|");
 			cout<<fileDescriptor.fileName.substr(0,number)<<".";

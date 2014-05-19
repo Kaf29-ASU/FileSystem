@@ -26,9 +26,13 @@ int FileSystem::createNewFile()
 		resultCode=2222;
 		return(resultCode);
 	};
-	int fileSize;
+	int fileSize=0;
 	cout<<"Введите размер файла в байтах"<<endl;
-	cin>>fileSize;
+	string inp;
+	cin>>inp;
+	fileSize=toInt(inp);
+	if (toString(fileSize,inp.length())!=inp)
+		return 2222;
 	int blockCount=(fileSize/512)+1;
 	/*
 	string fileSizeString=toString(fileSize, 16);
@@ -47,11 +51,22 @@ int FileSystem::createNewFile()
 	cout<<endl<<"Дата создания файла: "<<creationDate<<endl;
 
 
-FileDescriptor current;
-FileDescriptor nextDescr;
+//FileDescriptor current;
+//FileDescriptor nextDescr;
 int number=0;
 
-for(int i=1;i<=218;++i)
+			FileDescriptor fileDescriptor;
+			fileDescriptor.descriptorType="002000";
+			fileDescriptor.fileName=fileName;
+			fileDescriptor.fileType=fileType;
+			fileDescriptor.blockCount=blockCount;
+			fileDescriptor.creationDate=creationDate;
+			writeRecord(fileDescriptor);
+			resultCode=0;
+			return(resultCode);
+
+
+/*for(int i=1;i<=218;++i)
 {
 	
 		current=getRecord(i);
@@ -118,7 +133,7 @@ for(int i=1;i<=218;++i)
 			return(resultCode);
 		}
 		
-}
+}*/
 
 if(resultCode==100)
 {
