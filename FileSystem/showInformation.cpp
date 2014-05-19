@@ -25,7 +25,7 @@ int FileSystem::showInformation()
 			}
 		
 	}
-	if (sumBlocks==0) {cout<<"нет свободных областей"<<endl ;}
+	if (sumBlocks==0) {cout<<"Фрагментация отсутствует"<<endl ;}
 
 	else {cout<<"Всего свободных блоков: "<<sumBlocks<<endl;}
 	FileDescriptor d;
