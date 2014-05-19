@@ -1,6 +1,9 @@
 #include "FileSystem.h"
 #include <iomanip>
 #include <ctime>
+#include <string>
+//using namespace System;
+
 
 class FileSystemMonitor
 {
