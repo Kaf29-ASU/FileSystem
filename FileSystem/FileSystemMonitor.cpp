@@ -116,8 +116,8 @@ void FileSystemMonitor::deleteFile()
 void FileSystemMonitor::reNameFile()
 {
 	int resultCode;
-	//resultCode=fileSystem.reNameFile();
-/*	switch(resultCode)
+	resultCode=fileSystem.reNameFile();
+	switch(resultCode)
 	{
 	case(0):
 			cout<<"успешное завершение"<<endl;
@@ -132,7 +132,7 @@ void FileSystemMonitor::reNameFile()
 			cout<<"недопустимая длина имени файла"<<endl;
 			break;
 	}
-*/
+
 }
 
 void FileSystemMonitor::addInformationToFile()
@@ -210,6 +210,15 @@ void FileSystemMonitor::createNewFileSystem()
 		string fileSystemName;
 		cin>>fileSystemName;
 		//fileSystem.createFile(fileSystemName);
+		string etalon="\|/?:*<>";
+		etalon.push_back('"');
+		
+		while((fileSystemName.find_first_of(etalon)>=0)&&(fileSystemName.find_first_of(etalon)<(fileSystemName.length()+1)))
+		{
+			cout<<"Имя содержит некорректные символы"<<endl;
+			cout<<"Введите имя файла для сохранения файловой системы"<<endl;
+			cin>>fileSystemName;
+		}
 		string version;
 		cout<<"print version"<<endl;
 		cin>>version;
@@ -278,6 +287,13 @@ void FileSystemMonitor::workCycle()
 		string fileSystemName;
 		cin>>fileSystemName;
 		fileSystem.openFile(fileSystemName);
+		while(!fileSystem.memory.is_open())
+		{
+			cout<<"Введите имя существующего файла "<<endl;
+			string fileSystemName;
+			cin>>fileSystemName;
+			fileSystem.openFile(fileSystemName);
+		}
 	};
 	for(;;)
 	{

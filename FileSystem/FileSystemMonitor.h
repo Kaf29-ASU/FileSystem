@@ -1,6 +1,9 @@
 #include "FileSystem.h"
 #include <iomanip>
 #include <ctime>
+#include <string>
+//using namespace System;
+
 
 class FileSystemMonitor
 {
@@ -19,8 +22,8 @@ public:
 	void showTableInAlphavit();
 	void formatFileSystem();
 
-	void startWorking();
-	string showMenu();
+	inline void startWorking();
+	inline string showMenu();
 	void workCycle();
-	void showHelp();
+	inline void showHelp();
 };
