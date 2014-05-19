@@ -6,6 +6,14 @@ int FileSystem::compressionOfFileSystem()
 	FileDescriptor *last=NULL;
 	FileDescriptor *current=NULL;
 	FileDescriptor *next=NULL;
+
+	for (int i=2;i<=217;i++)
+	{
+		FileDescriptor prev=getRecord(i-1);
+		FileDescriptor cur=getRecord(i);
+		cur.firstBlockNumber=toString(toInt(prev.firstBlockNumber)+prev.blockCount,16);
+		writeRecord(cur,i);
+	}
 	for (int i=1;i<=216;i++)
 	{
 		current=new FileDescriptor(getRecord(i));

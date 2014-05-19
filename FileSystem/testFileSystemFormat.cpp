@@ -46,8 +46,8 @@ TEST_F(TestFileSystem, incorrectFormatSystemName)		//проверка кода ошибки при не
 int main(int argc, char **argv)
 {
 
-	argv[1]="runtest";
-	argc=2;
+	//argv[1]="runtest";
+//	argc=2;
 	
 	setlocale(LC_ALL, "Russian"); 
 
@@ -63,6 +63,21 @@ int main(int argc, char **argv)
 			};
 
 		}
+
+/*	FileSystem f;
+	f.createFile("qweq1");
+	f.openFile("qweq1");
+	f.format("1","2","3","4");
+	for(int i=0;i<20;i++)
+	{
+	FileDescriptor d;
+	d.blockCount=9;
+	d.descriptorType="002000";
+	d.fileName="test"+f.toString(i,2);
+	f.writeRecord(d);
+	d=f.getRecord(i+1);
+	}
+	*/
 
 
 	//string s("123");

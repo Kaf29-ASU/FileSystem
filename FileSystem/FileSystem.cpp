@@ -347,8 +347,11 @@ int FileSystem::writeRecord(FileDescriptor input)
 				input.fileName=nameTrim(input.fileName);
 				input.fileType=nameTrim(input.fileType);
 				int pos=getRecordNumber(input.fileName);
+				if (pos==1)
+					input.firstBlockNumber=toString(68,16);
+				else{
 				FileDescriptor prev=getRecord(pos-1);
-				input.firstBlockNumber=toString(prev.blockCount+toInt(prev.firstBlockNumber),16);
+				input.firstBlockNumber=toString(prev.blockCount+toInt(prev.firstBlockNumber),16);}
 				writeRecord(input,pos);
 				return 0;
 			}
@@ -365,8 +368,11 @@ int FileSystem::writeRecord(FileDescriptor input)
 				input.fileName=nameTrim(input.fileName);
 				input.fileType=nameTrim(input.fileType);
 				int pos=getRecordNumber(input.fileName);
+				if (pos==1)
+					input.firstBlockNumber=toString(68,16);
+				else{
 				FileDescriptor prev=getRecord(pos-1);
-				input.firstBlockNumber=toString(prev.blockCount+toInt(prev.firstBlockNumber),16);
+				input.firstBlockNumber=toString(prev.blockCount+toInt(prev.firstBlockNumber),16);}
 				writeRecord(input,pos);
 				return 0;
 			}
