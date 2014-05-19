@@ -28,11 +28,12 @@ int FileSystem::createNewFile()
 	};
 	int fileSize=0;
 	cout<<"¬ведите размер файла в байтах"<<endl;
+	string etalon="1234567890";
 	string inp;
 	cin>>inp;
-	fileSize=toInt(inp);
-	if (toString(fileSize,inp.length())!=inp)
+	if (inp.find_first_not_of(etalon)!=-1)
 		return 2222;
+	fileSize=toInt(inp);
 	int blockCount=(fileSize/512)+1;
 	/*
 	string fileSizeString=toString(fileSize, 16);
