@@ -1,35 +1,56 @@
 
 #include "FileSystem.h"
+#include <vector>
+#include <iterator>
 
 int FileSystem::showContentInAlphavit()
-{int resultCode=0;
-	string s[218];
+{
+	int resultCode=0;
+	vector <string> s(0);
 	
 	for (int i=0;i<218; i++)
 		{
 		FileDescriptor fileDescriptor=getRecord(i);
 		if(fileDescriptor.descriptorType!="0000000000000000")
 			{
-			int number=fileDescriptor.fileName.find("|");
-			s[i]=fileDescriptor.fileName.substr(0,number);
-			number=fileDescriptor.fileType.find("|");
-			s[i]+="."+fileDescriptor.fileType.substr(0,number);
-                	}
-		}
-	for (int n=0;n<218; n++)
-		for (int i=0;i<217; i++)
-		{
-			string buf="";
-			if (s[i]>s[i+1])
-			{
-				buf=s[i];
-				s[i]=s[i+1];
-				s[i+1]=buf;
-			}
-		}
+				if (s.size()==0)
+					{
+						int number=fileDescriptor.fileName.find("|");
+						s.insert(s.begin(),fileDescriptor.fileName.substr(0,number));
+						number=fileDescriptor.fileType.find("|");
+						s[0]+="."+fileDescriptor.fileType.substr(0,number);
+					}
 
-	for (int i=0;i<218; i++)
-		cout<<s[i]<<endl;
 
-	return (resultCode);
+				if (s.size()>0)
+				{int low=0, high=s.size()-1;
+				 int number=fileDescriptor.fileName.find("|");
+					
+					if(s[high]<=fileDescriptor.fileName.substr(0,number))
+					{s.insert(s.end(),fileDescriptor.fileName.substr(0,number));
+					number=fileDescriptor.fileType.find("|");
+					s[s.size()-1]+="."+fileDescriptor.fileType.substr(0,number);}
+				
+			else
+				{int bord=high;
+					while(low<high)
+					{
+						int middle=(low+high)/2;
+						if (s[middle]>=fileDescriptor.fileName.substr(0,number))
+							high=middle;
+						else
+							low=middle+1;
+					}
+					s.insert(s.begin()+low,fileDescriptor.fileName.substr(0,number));
+					number=fileDescriptor.fileType.find("|");
+					s[low]+="."+fileDescriptor.fileType.substr(0,number);
+					}}
+
+			
+            }
+		}
+	
+	copy( s.begin(), s.end(),ostream_iterator<string>(cout," ") );
+	return(resultCode);
+
 }
