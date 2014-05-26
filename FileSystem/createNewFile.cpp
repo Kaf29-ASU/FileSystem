@@ -30,6 +30,13 @@ int FileSystem::createNewFile()
 	cout<<"¬ведите размер файла в байтах"<<endl;
 	string etalon="1234567890";
 	string inp;
+	etalon="\|/?:*<>";
+		etalon.push_back('"');
+		
+		if((fileName.find_first_of(etalon)>=0)&&(fileName.find_first_of(etalon)<(fileName.length()+1)))
+		{
+			return 2222;
+		}
 	cin>>inp;
 	if (inp.find_first_not_of(etalon)!=-1)
 		return 2222;
