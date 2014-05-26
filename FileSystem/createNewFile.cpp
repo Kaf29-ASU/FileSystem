@@ -28,16 +28,20 @@ int FileSystem::createNewFile()
 	};
 	int fileSize=0;
 	cout<<"¬ведите размер файла в байтах"<<endl;
-	string etalon="1234567890";
-	string inp;
-	etalon="\|/?:*<>";
+	string etalon="\|/?:*<>";
 		etalon.push_back('"');
-		
+		if((fileType.find_first_of(etalon)>=0)&&(fileType.find_first_of(etalon)<(fileType.length()+1)))
+		{
+			return 2222;
+		}
 		if((fileName.find_first_of(etalon)>=0)&&(fileName.find_first_of(etalon)<(fileName.length()+1)))
 		{
 			return 2222;
 		}
+	etalon="1234567890";
+	string inp;
 	cin>>inp;
+
 	if (inp.find_first_not_of(etalon)!=-1)
 		return 2222;
 	fileSize=toInt(inp);

@@ -11,9 +11,10 @@ int FileSystem::writeVolumeLabelAndOwner()
 	cin>>Owner;
 	if (Owner.length()>12) return 1; 
 	Block temp_Block;
+	temp_Block.Clean();
 	temp_Block.InsertString(472,VolName);
 	temp_Block.InsertString(484,Owner);
-	memory.write((char*)temp_Block.byteMassive, 512);
+	this->writeBlock(temp_Block,2);
 	return 0;
 }
 

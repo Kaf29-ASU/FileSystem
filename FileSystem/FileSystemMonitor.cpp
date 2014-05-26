@@ -123,13 +123,13 @@ void FileSystemMonitor::reNameFile()
 			cout<<"успешное завершение"<<endl;
 			break;
 	case(1):
-			cout<<"отсутствие искомого файла"<<endl;
-			break;
-	case(2):
-			cout<<"файл с таким именем уже существует"<<endl;
+			cout<<"недопустимая длина имени файла"<<endl;
 			break;
 	case(3):
-			cout<<"недопустимая длина имени файла"<<endl;
+			cout<<"файл с таким именем уже существует"<<endl;
+			break;
+	case(2):
+			cout<<"отсутствие искомого файла"<<endl;
 			break;
 	}
 
