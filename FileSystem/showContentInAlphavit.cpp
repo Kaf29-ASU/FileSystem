@@ -13,25 +13,16 @@ int FileSystem::showContentInAlphavit()
 		FileDescriptor fileDescriptor=getRecord(i);
 		if(fileDescriptor.descriptorType!="0000000000000000")
 			{
-				if (s.size()==0)
-					{
-						int number=fileDescriptor.fileName.find("|");
-						s.insert(s.begin(),fileDescriptor.fileName.substr(0,number));
-						number=fileDescriptor.fileType.find("|");
-						s[0]+="."+fileDescriptor.fileType.substr(0,number);
-					}
 
-
-				if (s.size()>0)
+					if (s.size()>0)
 				{int low=0, high=s.size()-1;
 				 int number=fileDescriptor.fileName.find("|");
 					
 					if(s[high]<=fileDescriptor.fileName.substr(0,number))
 					{s.insert(s.end(),fileDescriptor.fileName.substr(0,number));
 					number=fileDescriptor.fileType.find("|");
-					s[s.size()-1]+="."+fileDescriptor.fileType.substr(0,number);}
-				
-			else
+					s[s.size()-1]+="."+fileDescriptor.fileType.substr(0,number)+"\n";}
+					else
 				{int bord=high;
 					while(low<high)
 					{
@@ -43,8 +34,21 @@ int FileSystem::showContentInAlphavit()
 					}
 					s.insert(s.begin()+low,fileDescriptor.fileName.substr(0,number));
 					number=fileDescriptor.fileType.find("|");
-					s[low]+="."+fileDescriptor.fileType.substr(0,number);
-					}}
+					s[low]+="."+fileDescriptor.fileType.substr(0,number)+"\n";
+					}
+					}
+				
+					else//if (s.size()==0)
+					{
+						int number=fileDescriptor.fileName.find("|");
+						s.insert(s.begin()," "+fileDescriptor.fileName.substr(0,number));
+						number=fileDescriptor.fileType.find("|");
+						s[0]+="."+fileDescriptor.fileType.substr(0,number)+"\n";
+					}
+
+
+				
+			
 
 			
             }

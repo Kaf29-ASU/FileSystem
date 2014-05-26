@@ -14,7 +14,7 @@ int FileSystem::showTableOfContent()
 			cout<<fileDescriptor.fileType.substr(0,number)<<endl;
 			cout<<fileDescriptor.blockCount<<endl;
 			//number=fileDescriptor.creationDate.find("|");
-			cout<<fileDescriptor.creationDate.substr(0,15)<<endl<<endl;
+			cout<<fileDescriptor.creationDate.substr(0,12)<<endl<<endl;
 		}
 	}	
 			
