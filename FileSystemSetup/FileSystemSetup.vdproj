@@ -56,6 +56,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
         "Release"
@@ -100,20 +113,6 @@
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_A87A7B4631C84A03BE3A7D79DF1276CC"
-            {
-            "Name" = "8:dotNetFx40_Full_x86_x64.exe"
-            "Condition" = "8:"
-            "Object" = "8:_420DC19FAEDE4AC7B407DA05A6B759CE"
-            "FileType" = "3:2"
-            "InstallAction" = "3:1"
-            "Arguments" = "8:/Install"
-            "EntryPoint" = "8:"
-            "Sequence" = "3:1"
-            "Identifier" = "8:_0721EE78_CED5_4002_85F9_7FB3E1570073"
-            "InstallerClass" = "11:FALSE"
-            "CustomActionData" = "8:"
-            }
         }
         "DefaultFeature"
         {
@@ -129,7 +128,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                "FrameworkVersion" = "8:.NETFramework,Version=v3.5"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=131000"
                 }
@@ -214,7 +213,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:FileSystemSetup"
         "ProductCode" = "8:{0C5E3492-2B69-42EC-90C9-DA82D4A5830C}"
-        "PackageCode" = "8:{0CACC660-60D1-4918-AE31-006C1FCB8981}"
+        "PackageCode" = "8:{2ED6CA52-ACBC-4D5D-9C6C-368D77FDFFE2}"
         "UpgradeCode" = "8:{47EBE70A-4B2F-40D3-82E6-979C20A5BE78}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

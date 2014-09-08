@@ -1,0 +1,68 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="modelling.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1>
+                    Мое приложение ASP.NET
+                </h1>
+            </div>
+            <div class="loginDisplay">
+                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                    <AnonymousTemplate>
+                        <asp:Label runat=server ID="authInfo" ></asp:Label><br />
+                        <asp:TextBox ID="loginUsrName" runat="server"></asp:TextBox> <br />
+                        <asp:TextBox ID="loginPassword" runat="server" TextMode="Password" ViewStateMode="Disabled" >Пароль</asp:TextBox> <br />
+                        <asp:Button ID="enterTheSystem" runat="server" OnClick="EnterTheSystem" Text="[Войти]" />
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        Добро пожаловать <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Выход" LogoutPageUrl="~/"/> ]
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
+            <div class="clear hideSkiplink">
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Домашняя"/>
+                        <asp:MenuItem NavigateUrl="~/Registration.aspx" Text="Регистрация"/>
+                        <asp:MenuItem NavigateUrl="~/About.aspx" Text="О программе"/>
+                    </Items>
+                </asp:Menu>
+                
+            </div>
+        </div>
+        <div id="leftMenu">
+            <asp:TreeView ID="Categories"  runat="server" ShowExpandCollapse="False">
+                <Nodes>
+                    <asp:TreeNode text="124">
+                        <asp:TreeNode Text="234">
+                        </asp:TreeNode>
+                    </asp:TreeNode>
+                </Nodes>
+            </asp:TreeView>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+            
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>
